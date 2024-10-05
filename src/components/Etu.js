@@ -3,6 +3,7 @@ import { ControllersDataContext } from '../contexts/ControllersDataProvider';
 import { useNavigate } from 'react-router-dom';
 import ControllerPanelEpic4 from './ControllerPanelEpic4';
 import ControllerPanelUnknown from './ControllerPanelUnknown';
+import DraggableController from './DraggableController';
 import { IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -12,9 +13,11 @@ const Etu = () => {
   const navigate = useNavigate();
 
   const [controllerData, setControllerData] = useState([]);
+  const [controllerOrder, setControllerOrder] = useState([]);
   const [showUnknown, setShowUnknown] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [panelSizes, setPanelSizes] = useState({});
+  const [draggedIndex, setDraggedIndex] = useState(null);
 
   const extractData = useCallback((controllers) => {
     if (!Array.isArray(controllers)) {
@@ -24,7 +27,7 @@ const Etu = () => {
       ip: item.Controller.ip,
       lastActive: new Date(item.LASTACTIVE).toLocaleString(),
       selected: false,
-      ctrlType: item.CTRLTYPE, // Include CTRLTYPE in the mapped data
+      ctrlType: item.CTRLTYPE,
       Controller: item.Controller
     }));
   }, []);
@@ -44,13 +47,33 @@ const Etu = () => {
   useEffect(() => {
     if (data) {
       const newData = extractData(data);
-      setControllerData(prevData => mergeDataWithSelection(newData, prevData));
+      setControllerData(prevData => {
+        const mergedData = mergeDataWithSelection(newData, prevData);
+        // Update controllerOrder if it's empty or if new controllers are added
+        setControllerOrder(prevOrder => {
+          if (prevOrder.length === 0) {
+            return mergedData.map(item => item.ip);
+          }
+          const newOrder = [...prevOrder];
+          mergedData.forEach(item => {
+            if (!newOrder.includes(item.ip)) {
+              newOrder.push(item.ip);
+            }
+          });
+          return newOrder;
+        });
+        return mergedData;
+      });
       // Initialize panel sizes
-      const sizes = newData.reduce((acc, item) => {
-        acc[item.ip] = { width: 300, height: 200 };
-        return acc;
-      }, {});
-      setPanelSizes(sizes);
+      setPanelSizes(prevSizes => {
+        const newSizes = { ...prevSizes };
+        newData.forEach(item => {
+          if (!newSizes[item.ip]) {
+            newSizes[item.ip] = { width: 300, height: 200 };
+          }
+        });
+        return newSizes;
+      });
     }
   }, [data, extractData, mergeDataWithSelection]);
 
@@ -76,30 +99,73 @@ const Etu = () => {
     }));
   }, []);
 
-  const renderControllerPanel = (item) => {
+  const handleDragStart = (index) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
+
+  const handleDragOver = (index) => {
+    // This function can be left empty or removed if not needed
+  };
+
+  const handleDragLeave = () => {
+    // This function can be left empty or removed if not needed
+  };
+
+  const handleDrop = (targetIndex) => {
+    if (draggedIndex !== null && draggedIndex !== targetIndex) {
+      setControllerOrder(prevOrder => {
+        const newOrder = [...prevOrder];
+        const [removed] = newOrder.splice(draggedIndex, 1);
+        newOrder.splice(targetIndex, 0, removed);
+        return newOrder;
+      });
+    }
+  };
+
+  const renderControllerPanel = (ip, index) => {
+    const item = controllerData.find(data => data.ip === ip);
+    if (!item) return null;
+
     const Panel = item.ctrlType === 'UNKNOWN' ? ControllerPanelUnknown : ControllerPanelEpic4;
     const size = panelSizes[item.ip] || { width: 300, height: 200 };
 
     return (
-      <Panel
+      <div
         key={item.ip}
-        item={item}
-        onSelect={() => handleSelect(controllerData.findIndex(data => data.ip === item.ip))}
-        onDoubleClick={() => item.ctrlType === 'UNKNOWN' ? handleDoubleClickUnknown(item.ip) : handleDoubleClickEpic4(item.ip)}
-        selected={item.selected}
-        onResize={(newSize) => handleResize(item.ip, newSize)}
-        size={size}  // Pass the size to the Panel component
-      />
+        onDragOver={(e) => {
+          e.preventDefault();
+          handleDragOver(index);
+        }}
+        onDrop={() => handleDrop(index)}
+      >
+        <DraggableController
+          initialSize={size}
+          onResize={(newSize) => handleResize(item.ip, newSize)}
+          selected={item.selected}
+          onDragStart={() => handleDragStart(index)}
+          onDragEnd={handleDragEnd}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          index={index}
+        >
+          <Panel
+            item={item}
+            onSelect={() => handleSelect(controllerData.findIndex(data => data.ip === item.ip))}
+            onDoubleClick={() => item.ctrlType === 'UNKNOWN' ? handleDoubleClickUnknown(item.ip) : handleDoubleClickEpic4(item.ip)}
+            selected={item.selected}
+          />
+        </DraggableController>
+      </div>
     );
   };
 
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
-  const filteredControllerData = controllerData.filter(item => 
-    showUnknown || item.ctrlType !== 'UNKNOWN'
-  );
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -155,7 +221,12 @@ const Etu = () => {
         justifyContent: 'flex-start',
         padding: '20px',
       }}>
-        {filteredControllerData.map(renderControllerPanel)}
+        {controllerOrder
+          .filter(ip => {
+            const item = controllerData.find(data => data.ip === ip);
+            return item && (showUnknown || item.ctrlType !== 'UNKNOWN');
+          })
+          .map((ip, index) => renderControllerPanel(ip, index))}
       </div>
     </div>
   );

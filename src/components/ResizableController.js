@@ -35,21 +35,13 @@ const ResizableController = ({ children, initialSize, onResize, selected }) => {
         margin: '10px',
         flexGrow: 0,
         flexShrink: 0,
-      }}
-    >
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
         border: '1px solid #ccc',
         borderRadius: '4px',
         overflow: 'hidden',
         backgroundColor: selected ? '#d3d3d3' : 'transparent',
-      }}>
-        {children}
-      </div>
+      }}
+    >
+      {React.cloneElement(children, { style: { height: '100%', width: '100%' } })}
       {selected && (
         <div
           style={{
