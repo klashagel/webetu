@@ -1,0 +1,14 @@
+@keyframes blink-animation {
+    0% { background-color: yellow; }
+    50% { background-color: white; }
+    100% { background-color: yellow; }
+  }
+  
+  .blinking {
+    animation: blink-animation 1s infinite;
+  }
+  
+  .selected {
+    background-color: lightgray;
+    border: 2px solid transparent;
+  }

@@ -1,0 +1,9 @@
+{
+    "welcome_message": "Welcome to the Epic 4 Main Page",
+    "description": "This is a test page to showcase the Epic 4 functionality.",
+    "lbl_high_voltage": "High Voltage",
+    "lbl_firing_ratio": "Firing Ratio",
+    "lbl_epic4_field": "Epic4 Field",
+    "lbl_AO1": "Analog output 1:",
+    "lbl_AO2": "Analog output 2:"
+  }

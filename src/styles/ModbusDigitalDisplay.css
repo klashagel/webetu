@@ -1,0 +1,26 @@
+.modbus-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modbus-digital-button {
+  width: 60px; /* Fixed width for circular shape */
+  height: 60px; /* Fixed height to match width for circular shape */
+  border: none;
+  border-radius: 50%; /* Makes the button circular */
+  background-color: gray; /* Default background color */
+  color: white; /* Text color */
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  cursor: default; /* Not clickable */
+  pointer-events: none; /* Ensures the element is not clickable */
+  font-weight: bold;
+  font-size: 16px; /* Adjust font size as needed */
+  text-align: center; /* Center text horizontally */
+}
+
+.modbus-digital-button.active {
+  background-color: red; /* Color when active */
+}

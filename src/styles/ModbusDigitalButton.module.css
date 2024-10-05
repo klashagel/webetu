@@ -1,0 +1,9 @@
+/* ModbusDigitalButton.module.css */
+.modbusAnalogButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  /* You can add more styling as needed */
+}

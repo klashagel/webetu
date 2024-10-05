@@ -1,0 +1,282 @@
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import MonacoEditor from '@monaco-editor/react';
+import { WebSocketContext } from '../contexts/WebSocketProvider';
+import { EVENT_ID_JOB_STATUS_UPDATE } from '../constants';
+import { useConfigContext } from '../contexts/ConfigContext';
+import { modbusDigitalDI, controller1Keypad, controller2Keypad, controller3Display } from '../constants/matrices';
+import ModbusDigitalDisplay from '../components/ModbusDigitalDisplay';
+import SerialDigitalDataButtonDisplay from '../components/SerialDigitalDataButtonDisplay';
+import SerialDigitalDataDisplay from '../components/SerialDigitalDataDisplay';
+import SerialAnalogLabel from '../components/SerialAnalogLabel';
+import { useTranslation } from 'react-i18next';
+import ModbusTextInputNew from '../components/ModbusTextboxNew';
+import RestApiButtonSerial from '../components/RestApiButtonSerial';
+import { Button, Menu, MenuItem, Drawer, IconButton } from '@mui/material';
+import DialogSelectLuaFile from '../components/DialogSelectLuaFile';
+import ChevronLeftIcon from '@mui/icons-material/ChevroncLeft'; // Icon for collapsing drawer
+import CloseIcon from '@mui/icons-material/Close'; // Close icon
+
+const Epic4Auto = () => {
+  const { data } = useContext(WebSocketContext);
+  const editorRef = useRef(null);
+  const { restUrl } = useConfigContext();
+  const { ip } = useParams();
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const [anchorElFile, setAnchorElFile] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog visibility
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [open, setOpen] = useState(false); // State to manage drawer open/close
+  const [openedFromMenu, setOpenedFromMenu] = useState(false); // Track if drawer was opened from menu
+  const [code, setCode] = useState('');
+  const [runMessages, setRunMessages] = useState('');
+
+  const handleLanguageChange = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+    setOpenedFromMenu(true); // Mark that the drawer was opened from the menu
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+    setOpenedFromMenu(false); // Reset the flag when closing
+  };
+
+  // Function to handle editor content updates
+  const updateEditorContent = (newContent) => {
+    if (editorRef.current) {
+      const editor = editorRef.current;
+      const model = editor.getModel();
+      if (model) {
+        const currentValue = model.getValue();
+        model.setValue(currentValue + '\n' + newContent);
+
+        // Scroll to the bottom
+        const lastLine = model.getLineCount();
+        editor.revealLineInCenter(lastLine);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (data && data.eventid === EVENT_ID_JOB_STATUS_UPDATE) {
+      const messageContent = data.data;
+      updateEditorContent(messageContent);
+    }
+  }, [data]);
+
+  const handleRun = async (fileId) => {
+    try {
+      const response = await fetch(`${restUrl}/lua/run/${fileId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ fileId }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log('API response:', result);
+
+    } catch (error) {
+      console.error('Error making API request:', error);
+    }
+  };
+
+  const handleOpenFile = () => {
+    handleCloseFileMenu(); // Close the menu
+    setIsDialogOpen(true); // Open the dialog
+  };
+
+  const handleClickFileMenu = (event) => {
+    setAnchorElFile(event.currentTarget);
+  };
+
+  const handleCloseFileMenu = () => {
+    setAnchorElFile(null);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
+
+  const handleItemSelected = (item) => {
+    setSelectedItem(item);
+    localStorage.setItem('selectedItem', item); // Save to localStorage
+    console.log('Selected Item:', item);
+  };
+
+  const handleEditorMount = (editor, monaco) => {
+    editorRef.current = editor;
+    editor.layout(); // Trigger layout on editor mount
+};
+
+  return (
+    <div className="app-content" style={{ display: 'flex', flexDirection: 'column', height: '100vh', position: 'relative' }}>
+      <div style={{ padding: '10px', fontWeight: 'bold' }}>
+        <DialogSelectLuaFile
+          isOpen={isDialogOpen}
+          onClose={handleDialogClose}
+          title="Select an Item"
+          onItemSelected={handleItemSelected}
+        />
+      </div>
+
+      {/* Button Row on Top */}
+      <div>
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClickFileMenu}
+        >
+          File
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorElFile}
+          keepMounted
+          open={Boolean(anchorElFile)}
+          onClose={handleCloseFileMenu}
+        >
+          <MenuItem onClick={handleOpenFile}>Open..</MenuItem>
+          <MenuItem onClick={handleDrawerOpen}>Open Drawer</MenuItem>
+        </Menu>
+      </div>
+
+      {/* Drawer for Right Column */}
+      <Drawer
+        variant="persistent"
+        anchor="right"
+        open={open}
+        sx={{ 
+          width: open ? '1000px' : '0px', // Full width when open, otherwise hidden
+          flexShrink: 0,
+          '& .MuiDrawer-paper': { 
+            width: open ? '1000px' : '0px', 
+            boxSizing: 'border-box',
+            zIndex: 1200,
+          },
+        }}
+      >
+        <div style={{ padding: '10px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <IconButton 
+            onClick={handleDrawerClose}
+            style={{ position: 'absolute', top: 10, right: 10, zIndex: 1300 }}
+          >
+            {openedFromMenu ? <CloseIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+          {open && (
+            <div style={{ marginTop: '20px' }}>
+              <ModbusDigitalDisplay matrix={modbusDigitalDI} filterIp={ip} />
+              <div style={{ marginTop: '20px' }}>
+                <SerialDigitalDataButtonDisplay matrix={controller1Keypad} />
+              </div>
+              <div style={{ marginTop: '20px' }}>
+                <SerialDigitalDataButtonDisplay matrix={controller2Keypad} />
+              </div>
+              <div style={{ marginTop: '20px' }}>
+                <SerialDigitalDataDisplay matrix={controller3Display} />
+              </div>
+              <table className="globalTable">
+                <thead>
+                  <tr>
+                    <th>{t('label')}</th>
+                    <th>{t('value')}</th>
+                    <th>{t('measurement')}</th>
+                    <th>{t('action')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <label htmlFor="modbus-text-input-1">{t('lbl_AO1')}</label>
+                    </td>
+                    <td>
+                      <ModbusTextInputNew
+                        placeholder="Enter value"
+                        registerPath={['AO1']}
+                        ip={ip}
+                        register="HO_1248"
+                        convertToDisplay={(value) => value}
+                        convertToValue={(value) => Math.round(parseFloat(value) * 1)}
+                        style={{
+                          height: '30px',
+                          lineHeight: '30px',
+                          padding: '5px 10px',
+                          minWidth: '150px',
+                          boxSizing: 'border-box',
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <SerialAnalogLabel registerPath={['reg1', 'MeasuredValue']} />
+                    </td>
+                    <td>
+                      <RestApiButtonSerial buttonText={"Measure a1"} command={"a,ra1"} />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </Drawer>
+
+      {/* Main Content Area */}
+      <div style={{ display: 'flex', flex: 1, position: 'relative' }}>
+            
+            <div>
+                <MonacoEditor
+                    zIndex={0}
+                    height="90%"
+                    language="lua"
+                    value={code}
+                    onChange={setCode}
+                    options={{
+                        readOnly: false,
+                        minimap: { enabled: false },
+                        lineNumbers: "on",
+                        folding: false,
+                        wordWrap: "on",
+                        scrollBeyondLastLine: false,
+                        automaticLayout: false, // Disable automatic layout
+                    }}
+                    onMount={handleEditorMount}
+                />
+                  {selectedItem && <p>Selected Item: {selectedItem}</p>}
+            </div>
+
+
+            <div >
+                <div
+                    style={{
+                        zIndex: 1,
+                        width: '100%',
+                        height: '90%',
+                        backgroundColor: '#1e1e1e',
+                        color: 'white',
+                        border: 'none',
+                        padding: '10px',
+                        fontFamily: 'monospace',
+                        fontSize: '14px',
+                        boxSizing: 'border-box',
+                        overflowY: 'auto', // Allow scrolling
+                        whiteSpace: 'pre-wrap', // Preserve formatting
+                    }}
+                    dangerouslySetInnerHTML={{ __html: runMessages }}
+                />
+            </div>
+        </div>
+    </div>
+  );
+};
+
+export default Epic4Auto;

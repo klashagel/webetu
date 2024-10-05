@@ -1,0 +1,15 @@
+.modbusTextInput {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 8px 0;
+    box-sizing: content-box; /* Ensure width is based on content only */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.modbusTextInput:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}

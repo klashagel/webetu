@@ -1,0 +1,55 @@
+.inputWrapper {
+    display: inline-block;
+    position: relative;
+    padding: 5px;
+  }
+  
+  .modbusDropdownInput {
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    transition: border 0.2s ease-in-out;
+    cursor: pointer;
+    width: auto;
+  }
+  
+  .modbusDropdownInput:hover {
+    border-color: #007bff;
+  }
+  
+  .modbusDropdownInput:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .modbusDropdownInput:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  .label {
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .error {
+    border-color: red;
+  }
+  
+  .errorText {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  

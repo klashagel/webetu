@@ -1,0 +1,51 @@
+/* src/pages/Epic4Main.module.css */
+
+.container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+  }
+
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gridSection {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.gridSection h2 {
+  background-color: #4472C4;
+  color: white;
+  padding: 5px 10px;
+  margin: -10px -10px 10px -10px;
+}
+
+.gridRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.gridRow label {
+  font-weight: bold;
+}
+
+.gridRow input,
+.gridRow button {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}

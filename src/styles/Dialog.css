@@ -1,0 +1,97 @@
+.dialog {
+    position: fixed; /* Or absolute, depending on your layout */
+    z-index: 1000;   /* Ensure this value is higher than other elements */
+  }
+
+  .dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Ensure it's above other content */
+  }
+  
+  .dialog-content {
+    background: white;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2001; /* Ensure it's above the overlay */
+  }
+  
+  
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .dialog-body {
+    margin-top: 20px;
+  }
+  
+  .dialog-list {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Fixed height with scroll */
+    overflow-y: auto; /* Add vertical scroll if items exceed the height */
+  }
+  
+  .dialog-list-item {
+    padding: 8px 12px; /* Add some padding for better spacing */
+    cursor: pointer;
+    text-align: left; /* Ensure text is left-aligned */
+    border-bottom: 1px solid #ddd; /* Optional: Add a subtle border between items */
+  }
+  
+  .dialog-list-item:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+  }
+  
+  .dialog-list-item.selected {
+    background-color: #d0d0d0; /* Highlight selected item */
+  }
+  
+  
+  .dialog-footer {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .dialog-button {
+    margin-right: 16px; /* Adjust the spacing as needed */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .dialog-button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .dialog-textbox {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

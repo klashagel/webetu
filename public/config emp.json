@@ -1,0 +1,7 @@
+{
+
+    "websocketUrl": "ws://emp-gavle-2.zapto.org:8080/ws",
+    "restUrl": "http://emp-gavle-2.zapto.org:12345"
+  
+  }
+  

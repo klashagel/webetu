@@ -1,0 +1,26 @@
+.matrix {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .button-row .toggle-button {
+    background-color: lightgray; /* Default color, will be overridden */
+    color: white;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-row .toggle-button.active {
+    background-color: green;
+  }
+  

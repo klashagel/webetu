@@ -1,0 +1,11 @@
+/* ModbusDigitalButtonMatrix.module.css */
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust this value to control spacing between buttons */
+  }
+  
+  .buttonItem {
+    /* Optional: additional styling for each button item container */
+  }
+  

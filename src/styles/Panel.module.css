@@ -1,0 +1,30 @@
+/* Panel.module.css */
+
+.panel {
+  border: 1px solid #aaa; /* Softer border */
+  border-radius: 12px; /* Slightly more rounded corners */
+  padding: 16px; /* Space inside the frame */
+  background: linear-gradient(145deg, #f5f5f5, #e0e0e0); /* Subtle gradient background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), /* Softer shadow */
+              0 2px 4px rgba(0, 0, 0, 0.05); /* Additional light shadow for depth */
+  margin-bottom: 16px; /* Space between panels */
+  position: relative; /* Allows for positioning of the title */
+}
+
+.panelTitle {
+  font-weight: bold;
+  text-align: left; /* Align text to the left */
+  padding: 8px 16px; /* Padding around the title */
+  background-color: #fff; /* White background for the title */
+  border-bottom: 1px solid #aaa; /* Border between title and content */
+  border-top-left-radius: 12px; /* Rounded corners for the top-left */
+  border-top-right-radius: 12px; /* Rounded corners for the top-right */
+  margin: -16px -16px 8px -16px; /* Pull title into the panel and reduce bottom margin */
+  z-index: 1; /* Ensure the title is above the panel border */
+  font-size: 0.75rem; 
+}
+
+.panelContent {
+  padding-top: 8px; /* Reduce space between title and content */
+  padding-left: 0px;
+}

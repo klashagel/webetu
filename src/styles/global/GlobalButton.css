@@ -1,0 +1,46 @@
+/* GlobalButton.module.css */
+.globalButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: green;
+  width: 100%; /* Make the button take up the full width of its container */
+  max-width: 120px; /* Set a maximum width */
+  height: auto; /* Let the height adjust based on content and padding */
+  flex-grow: 1; /* Allow the button to grow with the container */
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transition for color and transform */
+}
+
+/* Pressed effect */
+.globalButton:active {
+  background-color: darkgreen; /* Darker shade for pressed effect */
+  transform: translateY(2px); /* Moves the button down by 2px to simulate a press */
+}
+
+.globalButtonRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Allow the buttons to wrap to the next line if needed */
+}
+
+
+  .globalTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .globalTable th,
+  .globalTable td {
+    padding: 10px;
+    text-align: left; /* Ensure left alignment */
+    border: 1px solid #ddd;
+  }
+  
+  .globalTable th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  

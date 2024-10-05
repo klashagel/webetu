@@ -1,0 +1,16 @@
+/* src/styles/Home.css */
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure container takes full height of the parent */
+  box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.home-main {
+  flex: 1;
+  overflow-y: auto; /* Allows scrolling if content overflows */
+  padding: 20px; /* Adjust padding as needed */
+  background-color: white; /* Ensure background color is white or as desired */
+  box-sizing: border-box; /* Include padding in height calculation */
+}

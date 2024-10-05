@@ -1,0 +1,17 @@
+.gaugeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 200px; /* Adjust size as needed */
+    height: 200px; /* Adjust size as needed */
+    position: relative; /* Ensure positioning for gaugeValue */
+  }
+  
+  .gaugeValue {
+    font-size: 24px; /* Adjust font size to fit inside the gauge */
+    font-weight: bold;
+    position: absolute;
+    color: #333; /* Adjust color as needed */
+  }
+  

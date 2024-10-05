@@ -1,0 +1,19 @@
+/* src/styles/SerialDigitalDataDisplay.module.css */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.digital-button {
+  padding: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+}
+
+.digital-button:hover {
+  opacity: 0.8;
+}
