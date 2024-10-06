@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ConfigProvider, useConfigContext } from './contexts/ConfigContext';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { ConfigProvider } from './contexts/ConfigContext';
 import WebSocketProvider from './contexts/WebSocketProvider';
 import ControllersDataProvider from './contexts/ControllersDataProvider';
+import Login from './pages/Login';
 import Home from './pages/Home';
 import Epic4Manual from './pages/Epic4Manual';
 import Epic4Auto from './pages/Epic4Auto';
@@ -19,6 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import ConfigEditor from './pages/ConfigEditor';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Breadcrumb from './components/Breadcrumb';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -43,49 +45,42 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const AppProviders = () => {
-  const { websocketUrl, restUrl } = useConfigContext();
-
-  if (!websocketUrl || !restUrl) {
-    return <div>Error: Configuration missing URLs</div>;
-  }
-
-  return (
-    <WebSocketProvider>
-      <ControllersDataProvider>
-        <SerialAnalogDataProvider>
-          <SerialDigitalDataProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Epic4Manual/:ip" element={<Epic4Manual />} />
-              <Route path="/Epic4Firmware" element={<Epic4Firmware />} />
-              <Route path="/Epic4Auto/:ip" element={<Epic4Auto />} />
-              <Route path="/Epic4Main/:ip" element={<Epic4Main />} />
-              <Route path="/UnknownManual/:ip" element={<UnknownManual />} />
-              <Route path="/LuaCodeEditor" element={<LuaCodeEditor fileId="1" />} />
-              <Route path="/ConfigEditor" element={<ConfigEditor />} />
-              <Route path="/FatReport" element={<FatReport />} />
-            </Routes>
-          </SerialDigitalDataProvider>
-        </SerialAnalogDataProvider>
-      </ControllersDataProvider>
-    </WebSocketProvider>
-  );
-};
-
 const App = () => {
   return (
     <ConfigProvider>
       <Router>
-        <div className="app-container">
-          <Header />
-          <div className="app-content">
-            <AppProviders />
-          </div>
-        </div>
-        <Footer />
         <ErrorBoundary>
-          <ToastContainer />
+          <WebSocketProvider>
+            <ControllersDataProvider>
+              <SerialAnalogDataProvider>
+                <SerialDigitalDataProvider>
+                  <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Navigate replace to="/login" />} />
+                    <Route path="/home" element={
+                      <div className="app-container">
+                        <Header />
+                        <div className="app-content">
+                          <Breadcrumb />
+                          <Home />
+                        </div>
+                        <Footer />
+                      </div>
+                    } />
+                    <Route path="/Epic4Manual/:ip" element={<Epic4Manual />} />
+                    <Route path="/Epic4Firmware" element={<Epic4Firmware />} />
+                    <Route path="/Epic4Auto/:ip" element={<Epic4Auto />} />
+                    <Route path="/epic4/main/:ip" element={<Epic4Main />} /> {/* Make sure this line is correct */}
+                    <Route path="/UnknownManual/:ip" element={<UnknownManual />} />
+                    <Route path="/LuaCodeEditor" element={<LuaCodeEditor fileId="1" />} />
+                    <Route path="/ConfigEditor" element={<ConfigEditor />} />
+                    <Route path="/FatReport" element={<FatReport />} />
+                  </Routes>
+                  <ToastContainer />
+                </SerialDigitalDataProvider>
+              </SerialAnalogDataProvider>
+            </ControllersDataProvider>
+          </WebSocketProvider>
         </ErrorBoundary>
       </Router>
     </ConfigProvider>

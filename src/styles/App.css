@@ -59,6 +59,7 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
+  min-height: calc(100vh - 120px); /* Adjust this value based on your header and footer height */
 }
 
 .app-footer {

@@ -13,7 +13,6 @@ const Etu = () => {
 
   const [controllerData, setControllerData] = useState([]);
   const [controllerOrder, setControllerOrder] = useState([]);
-  const [showUnknown, setShowUnknown] = useState(true);
   const [panelSizes, setPanelSizes] = useState({});
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [isEditMode, setIsEditMode] = useState(true);
@@ -83,11 +82,11 @@ const Etu = () => {
   }, []);
 
   const handleDoubleClickEpic4 = useCallback((ip) => {
-    navigate(`/Epic4Main/${ip}`);
+    navigate(`/epic4/main/${ip}`);
   }, [navigate]);
 
   const handleDoubleClickUnknown = useCallback((ip) => {
-    navigate(`/UnknownManual/${ip}`);
+    navigate(`/unknown/manual/${ip}`);
   }, [navigate]);
 
   const handleResize = useCallback((ip, newSize) => {
@@ -222,10 +221,6 @@ const Etu = () => {
         padding: '10px',
       }}>
         {controllerOrder
-          .filter(ip => {
-            const item = controllerData.find(data => data.ip === ip);
-            return item && (showUnknown || item.ctrlType !== 'UNKNOWN');
-          })
           .map((ip, index) => renderControllerPanel(ip, index))}
       </div>
     </div>
