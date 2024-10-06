@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const SunIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -19,42 +20,58 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { isDarkMode, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate('/home');
   };
 
+  const handleLanguageChange = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
+
   return (
     <div className={`flex h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}>
       <div className="flex-1 bg-cover bg-center" style={{backgroundImage: "url('/digital-brain-technology-wallpaper-0410-5697354-1.jpg')"}}></div>
       <div className={`flex-1 flex flex-col justify-center p-8 relative ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        <button
-          onClick={toggleTheme}
-          className="absolute top-4 right-4 p-2 rounded-full bg-opacity-20 bg-gray-600 hover:bg-opacity-30 transition-colors duration-200"
-        >
-          {isDarkMode ? <SunIcon /> : <MoonIcon />}
-        </button>
+        <div className="absolute top-4 right-4 flex items-center">
+          <select
+            onChange={handleLanguageChange}
+            value={i18n.language}
+            className={`mr-2 p-2 rounded ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
+          >
+            <option value="en">English</option>
+            <option value="sv">Svenska</option>
+            {/* Add more language options as needed */}
+          </select>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-opacity-20 bg-gray-600 hover:bg-opacity-30 transition-colors duration-200"
+          >
+            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </div>
         <div className="max-w-md w-full mx-auto">
-          <h1 className="text-4xl font-bold mb-2">Andritz AB</h1>
-          <h2 className="text-2xl mb-1">Login</h2>
-          <p className={`mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Enter your credentials to access your account</p>
+          <h1 className="text-4xl font-bold mb-2">{t('Andritz AB')}</h1>
+          <h2 className="text-2xl mb-1">{t('Login')}</h2>
+          <p className={`mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{t('Enter your credentials to access your account')}</p>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium mb-1">Username</label>
+              <label htmlFor="username" className="block text-sm font-medium mb-1">{t('Username')}</label>
               <input
                 type="text"
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                placeholder={t('admin')}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                   isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'
                 }`}
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium mb-1">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium mb-1">{t('Password')}</label>
               <input
                 type="password"
                 id="password"
@@ -70,7 +87,7 @@ const Login = () => {
               type="submit" 
               className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             >
-              Login
+              {t('Login')}
             </button>
           </form>
         </div>

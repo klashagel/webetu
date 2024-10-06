@@ -16,6 +16,7 @@ const Etu = () => {
   const [panelSizes, setPanelSizes] = useState({});
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [isEditMode, setIsEditMode] = useState(true);
+  const [showUnknown, setShowUnknown] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const extractData = useCallback((controllers) => {
@@ -82,7 +83,7 @@ const Etu = () => {
   }, []);
 
   const handleDoubleClickEpic4 = useCallback((ip) => {
-    navigate(`/epic4/main/${ip}`);
+    navigate(`/epic4/controller/${ip}`); // Updated this line
   }, [navigate]);
 
   const handleDoubleClickUnknown = useCallback((ip) => {
@@ -140,9 +141,15 @@ const Etu = () => {
     handleMenuClose();
   };
 
+  const toggleShowUnknown = () => {
+    setShowUnknown(!showUnknown);
+    handleMenuClose();
+  };
+
   const renderControllerPanel = (ip, index) => {
     const item = controllerData.find(data => data.ip === ip);
     if (!item) return null;
+    if (!showUnknown && item.ctrlType === 'UNKNOWN') return null;
 
     const Panel = item.ctrlType === 'UNKNOWN' ? ControllerPanelUnknown : ControllerPanelEpic4;
     const size = panelSizes[item.ip] || { width: 300, height: 200 };
@@ -150,6 +157,7 @@ const Etu = () => {
     return (
       <div
         key={item.ip}
+        className="p-2"
         onDragOver={(e) => {
           e.preventDefault();
           if (isEditMode) handleDragOver(index);
@@ -169,7 +177,7 @@ const Etu = () => {
           index={index}
           isResizeEnabled={isEditMode}
           isDragDropEnabled={isEditMode}
-          isEditMode={isEditMode}  // Add this line
+          isEditMode={isEditMode}
           title={`Controller ${item.ip}`}
         >
           <Panel
@@ -184,44 +192,32 @@ const Etu = () => {
   };
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p className="text-red-500 p-4">Error: {error.message}</p>;
   }
 
   return (
-    <div style={{ 
-      position: 'relative',  // Add this
-      display: 'flex', 
-      flexDirection: 'column', 
-      height: '100%', 
-      overflow: 'auto'
-    }}>
-      <div style={{
-        position: 'absolute',  // Change this
-        top: '10px',           // Add this
-        right: '10px',         // Add this
-        zIndex: 1000,          // Add this
-      }}>
-        <IconButton onClick={handleMenuOpen}>
-          <MoreVertIcon />
-        </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
-          <MenuItem onClick={toggleEditMode}>
-            {isEditMode ? 'Lock Layout' : 'Edit Layout'}
-          </MenuItem>
-        </Menu>
-      </div>
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        padding: '10px',
-      }}>
-        {controllerOrder
-          .map((ip, index) => renderControllerPanel(ip, index))}
+    <div className="relative flex flex-col h-full">
+      <div className="flex justify-between items-start p-2">
+        <div className="flex-grow flex flex-wrap justify-start">
+          {controllerOrder.map((ip, index) => renderControllerPanel(ip, index))}
+        </div>
+        <div className="flex-shrink-0 ml-2">
+          <IconButton onClick={handleMenuOpen}>
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={toggleEditMode}>
+              {isEditMode ? 'Lock Layout' : 'Edit Layout'}
+            </MenuItem>
+            <MenuItem onClick={toggleShowUnknown}>
+              {showUnknown ? 'Hide Unknown Controllers' : 'Show Unknown Controllers'}
+            </MenuItem>
+          </Menu>
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,10 @@
 import React from 'react';
-import '../styles/Home.css'; // Importing the CSS file
-import Etu from '../components/Etu'; // Importing the Etu component
+import Etu from '../components/Etu';
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <main className="home-main">
-        <Etu /> 
-
-      </main>
+    <div className="h-full">
+      <Etu />
     </div>
   );
 };

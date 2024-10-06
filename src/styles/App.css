@@ -20,16 +20,14 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 60px; /* Adjust this value based on your footer height */
 }
 
 .app-header {
   position: sticky;
   top: 0;
-  background-color: #333;
-  color: white;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   z-index: 1000;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .header-content {
@@ -42,24 +40,30 @@ body {
 
 .app-header h1 {
   margin: 0;
+  flex-shrink: 0;
+}
+
+.app-header nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .app-header nav ul {
   list-style-type: none;
   display: flex;
-  gap: 1rem;
+  padding: 0;
+  margin: 0;
 }
 
 .app-header nav a {
-  color: white;
   text-decoration: none;
+  padding: 0.5rem;
 }
 
 .app-content {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
-  min-height: calc(100vh - 120px); /* Adjust this value based on your header and footer height */
 }
 
 .app-footer {

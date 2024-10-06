@@ -29,8 +29,3 @@ WEB_ETU1
 ├── package.json
 └── README.m
 
-## 2. Application Overview
-- **Tech Stack**: React, Next.js 13+, Tailwind CSS, Lucide icons, custom REST API, Local database authentication
-- **Purpose**: Manage a collection of controller items with master detail view
-- **Key Features**: User authentication, item listing, creation, editing, and deletion
-- **Rendering Strategy**: Prioritize server-side rendering (SSR) using Next.js App Router

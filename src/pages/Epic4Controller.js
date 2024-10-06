@@ -6,20 +6,17 @@ import ModbusDigitalButton from '../components/ModbusDigitalButton';
 import ModbusTextInputNew from '../components/ModbusTextboxNew';
 import ModbusLabelNew from '../components/ModbusLabelNew';
 import { useTranslation } from 'react-i18next';
-import Dialog from '../components/DialogSelectLuaFile'; // Import the Dialog component
+import Dialog from '../components/DialogSelectLuaFile';
 import ModbusDropdownInput from '../components/ModbuDropDownInput';
-
 
 const Epic4Main = () => {
   const { ip } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [addContent, setAddContent] = useState(() => () => {});
-  const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog visibility
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-
 
   const handleContentChange = useCallback((contentUpdater) => {
     setAddContent(() => contentUpdater);
@@ -40,25 +37,23 @@ const Epic4Main = () => {
   const handleDialogClose = () => {
     setIsDialogOpen(false);
   };
+
   const handleItemSelected = (item) => {
     setSelectedItem(item);
     console.log('Selected Item:', item);
   };
 
-  // Open and close dialog functions
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);
- 
+
   return (
-    <div className="app-content">
-      <div className="globalButtonRow">
-        <button onClick={handleNavigateToManual} className="globalButton">Manual</button>
-        <button onClick={handleNavigateToAuto} className="globalButton">Auto</button>
+    <div className="p-4">
+      <div className="globalButtonRow mb-4">
+        <button onClick={handleNavigateToManual} className="globalButton mr-2">Manual</button>
+        <button onClick={handleNavigateToAuto} className="globalButton mr-2">Auto</button>
         <ModbusDigitalButton text="TRON" registerPath={['TrOn']} ip={ip} register="CO_16384" />
         <ModbusDigitalButton text="Reset" registerPath={['SUMALARMRESETREV']} ip={ip} register="CO_16384" />
         <ModbusDigitalButton text="TESTMODE" registerPath={['TESTMODE']} ip={ip} register="CO_16394" />
-
-      
       </div>
 
       <div className={labelStyles.wrapper}>
@@ -85,20 +80,18 @@ const Epic4Main = () => {
         />
       </div>
 
-      {/* Dialog Component */}
-         <Dialog
+      <Dialog
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         title="Select an Item"
-        onItemSelected={handleItemSelected} // Pass the item selection handler
+        onItemSelected={handleItemSelected}
       />
 
       {selectedItem && <p>Selected Item: {selectedItem}</p>}
-      <div>
 
       <div className={epicStyles.gridContainer}>
         <div className={epicStyles.gridSection}>
-          <h2>Operation</h2>
+          <h2 className="text-xl font-bold mb-2">Operation</h2>
           <div className={epicStyles.gridRow}>
             <label>High voltage</label>
             <ModbusLabelNew registerPath={['HighVoltage']} ip={ip} />
@@ -116,30 +109,27 @@ const Epic4Main = () => {
           <div className={epicStyles.gridRow}>
             <label>Mode</label>
             <ModbusDropdownInput
-  placeholder="Select a value"
-  registerPath={['ActModeFiringRatio']}
-  ip={ip}
-  register="HO_1112"
-  options={[
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
-  ]}
-  convertToDisplay={(val) => val}  // Modify based on your conversion logic
-  convertToValue={(val) => Number(val)} 
-
-/>
-
+              placeholder="Select a value"
+              registerPath={['ActModeFiringRatio']}
+              ip={ip}
+              register="HO_1112"
+              options={[
+                { value: 'option1', label: 'Option 1' },
+                { value: 'option2', label: 'Option 2' },
+                { value: 'option3', label: 'Option 3' },
+              ]}
+              convertToDisplay={(val) => val}
+              convertToValue={(val) => Number(val)}
+            />
             <label>RMS(A)</label>
             <ModbusLabelNew registerPath={['PrimaryRMSA']} ip={ip} />
             <label>Pulse</label>
             <ModbusLabelNew registerPath={['SecondaryPulse']} ip={ip} />
           </div>
-          {/* Add more rows as needed */}
         </div>
 
         <div className={epicStyles.gridSection}>
-          <h2>Active settings</h2>
+          <h2 className="text-xl font-bold mb-2">Active settings</h2>
           <div className={epicStyles.gridRow}>
             <label>Voltage peak limit</label>
             <ModbusTextInputNew
@@ -166,10 +156,7 @@ const Epic4Main = () => {
             <label>EOPT</label>
             <ModbusLabelNew registerPath={['EOPT']} ip={ip} />
           </div>
-          {/* Add more rows as needed */}
         </div>
-      </div>
-
       </div>
     </div>
   );
