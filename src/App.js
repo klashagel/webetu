@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Sidebar from 'react-sidebar';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { FaTimes } from 'react-icons/fa';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ConfigProvider, useConfigContext } from './contexts/ConfigContext';
 import WebSocketProvider from './contexts/WebSocketProvider';
 import ControllersDataProvider from './contexts/ControllersDataProvider';
@@ -11,7 +8,6 @@ import Epic4Manual from './pages/Epic4Manual';
 import Epic4Auto from './pages/Epic4Auto';
 import Epic4Main from './pages/Epic4Main';
 import UnknownManual from './pages/UnknownManual';
-import LanguageSwitcher from './components/LanguageSwitcher';
 import './styles/App.css';
 import LuaCodeEditor from './pages/LuaCodeEditor';
 import Epic4Firmware from './pages/Epic4Firmware';
@@ -21,7 +17,8 @@ import './styles/global/GlobalButton.css';
 import SerialDigitalDataProvider from './contexts/SerialDigitalDataProvider';
 import { ToastContainer } from 'react-toastify';
 import ConfigEditor from './pages/ConfigEditor';
-import TestPrintReport from './pages/TestPrintReport';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -77,61 +74,16 @@ const AppProviders = () => {
 };
 
 const App = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
-  const closeSidebar = () => {
-    setSidebarOpen(false);
-  };
-
   return (
     <ConfigProvider>
       <Router>
         <div className="app-container">
-          <header className="app-header no-print">
-            <GiHamburgerMenu
-              onClick={toggleSidebar}
-              className="sidebar-toggle-icon"
-              size={30}
-            />
-            <h1 className="app-title">EMP Pro</h1>
-            <div className="header-right">
-              <LanguageSwitcher />
-            </div>
-          </header>
-          <Sidebar
-            sidebar={
-              <div className="sidebar-content no-print">
-                <div className="sidebar-header">
-                  <h2 className="sidebar-title">EMP Pro</h2>
-                  <FaTimes className="sidebar-close-icon" onClick={closeSidebar} />
-                </div>
-                <div className="sidebar-body">
-                  <ul className="sidebar-links">
-                    <li><Link to="/" onClick={closeSidebar}>Home</Link></li>
-                    <li><Link to="/LuaCodeEditor" onClick={closeSidebar}>Code Editor</Link></li>
-                    <li><Link to="/Epic4Firmware" onClick={closeSidebar}>Firmware</Link></li>
-                    <li><Link to="/ConfigEditor" onClick={closeSidebar}>Settings</Link></li> 
-
-                  </ul>
-                </div>
-              </div>
-            }
-            open={sidebarOpen}
-            onSetOpen={setSidebarOpen}
-            styles={{
-              sidebar: { background: 'white', width: 250, position: 'fixed', top: 0, left: 0, zIndex: 20 },
-              overlay: { zIndex: 15 }
-            }}
-          >
-            <div className="app-content">
-              <AppProviders />
-            </div>
-          </Sidebar>
+          <Header />
+          <div className="app-content">
+            <AppProviders />
+          </div>
         </div>
+        <Footer />
         <ErrorBoundary>
           <ToastContainer />
         </ErrorBoundary>

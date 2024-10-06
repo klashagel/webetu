@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import ControllerPanelEpic4 from './ControllerPanelEpic4';
 import ControllerPanelUnknown from './ControllerPanelUnknown';
 import DraggableController from './DraggableController';
-import { IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CircleIcon from '@mui/icons-material/Circle';
 
 const Etu = () => {
   const { data, error } = useContext(ControllersDataContext);
@@ -15,9 +14,10 @@ const Etu = () => {
   const [controllerData, setControllerData] = useState([]);
   const [controllerOrder, setControllerOrder] = useState([]);
   const [showUnknown, setShowUnknown] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [panelSizes, setPanelSizes] = useState({});
   const [draggedIndex, setDraggedIndex] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const extractData = useCallback((controllers) => {
     if (!Array.isArray(controllers)) {
@@ -49,7 +49,6 @@ const Etu = () => {
       const newData = extractData(data);
       setControllerData(prevData => {
         const mergedData = mergeDataWithSelection(newData, prevData);
-        // Update controllerOrder if it's empty or if new controllers are added
         setControllerOrder(prevOrder => {
           if (prevOrder.length === 0) {
             return mergedData.map(item => item.ip);
@@ -64,7 +63,6 @@ const Etu = () => {
         });
         return mergedData;
       });
-      // Initialize panel sizes
       setPanelSizes(prevSizes => {
         const newSizes = { ...prevSizes };
         newData.forEach(item => {
@@ -93,14 +91,18 @@ const Etu = () => {
   }, [navigate]);
 
   const handleResize = useCallback((ip, newSize) => {
-    setPanelSizes(prev => ({
-      ...prev,
-      [ip]: newSize
-    }));
-  }, []);
+    if (isEditMode) {
+      setPanelSizes(prev => ({
+        ...prev,
+        [ip]: newSize
+      }));
+    }
+  }, [isEditMode]);
 
   const handleDragStart = (index) => {
-    setDraggedIndex(index);
+    if (isEditMode) {
+      setDraggedIndex(index);
+    }
   };
 
   const handleDragEnd = () => {
@@ -126,6 +128,19 @@ const Etu = () => {
     }
   };
 
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+    handleMenuClose();
+  };
+
   const renderControllerPanel = (ip, index) => {
     const item = controllerData.find(data => data.ip === ip);
     if (!item) return null;
@@ -138,9 +153,11 @@ const Etu = () => {
         key={item.ip}
         onDragOver={(e) => {
           e.preventDefault();
-          handleDragOver(index);
+          if (isEditMode) handleDragOver(index);
         }}
-        onDrop={() => handleDrop(index)}
+        onDrop={() => {
+          if (isEditMode) handleDrop(index);
+        }}
       >
         <DraggableController
           initialSize={size}
@@ -151,6 +168,10 @@ const Etu = () => {
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           index={index}
+          isResizeEnabled={isEditMode}
+          isDragDropEnabled={isEditMode}
+          isEditMode={isEditMode}  // Add this line
+          title={`Controller ${item.ip}`}
         >
           <Panel
             item={item}
@@ -167,59 +188,38 @@ const Etu = () => {
     return <p>Error: {error.message}</p>;
   }
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleToggleUnknown = () => {
-    setShowUnknown(prev => !prev);
-    handleClose();
-  };
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
-        <Tooltip title="Menu">
-          <IconButton
-            aria-controls={Boolean(anchorEl) ? 'menu' : undefined}
-            aria-haspopup="true"
-            onClick={handleClick}
-            color="primary"
-          >
-            <MoreVertIcon />
-          </IconButton>
-        </Tooltip>
+    <div style={{ 
+      position: 'relative',  // Add this
+      display: 'flex', 
+      flexDirection: 'column', 
+      height: '100%', 
+      overflow: 'auto'
+    }}>
+      <div style={{
+        position: 'absolute',  // Change this
+        top: '10px',           // Add this
+        right: '10px',         // Add this
+        zIndex: 1000,          // Add this
+      }}>
+        <IconButton onClick={handleMenuOpen}>
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={toggleEditMode}>
+            {isEditMode ? 'Lock Layout' : 'Edit Layout'}
+          </MenuItem>
+        </Menu>
       </div>
-      <Menu
-        id="menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxWidth: 200, // Set the maximum width of the menu
-          },
-        }}
-      >
-        <MenuItem onClick={handleToggleUnknown}>
-          <CircleIcon 
-            style={{ 
-              color: showUnknown ? 'green' : 'gray', 
-              marginRight: 8 
-            }}
-          />
-          {showUnknown ? 'Hide UNKNOWN Controllers' : 'Show UNKNOWN Controllers'}
-        </MenuItem>
-      </Menu>
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
-        padding: '20px',
+        padding: '10px',
       }}>
         {controllerOrder
           .filter(ip => {

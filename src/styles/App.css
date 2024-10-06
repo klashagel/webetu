@@ -1,127 +1,86 @@
 /* App.css */
 
-/* Existing styles remain as is */
-html, body {
-  height: 100%;
+/* CSS Reset */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
   font-family: Arial, sans-serif;
+  overflow-y: auto;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden;
+  padding-bottom: 60px; /* Adjust this value based on your footer height */
 }
 
 .app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: sticky;
+  top: 0;
   background-color: #333;
   color: white;
-  padding: 10px 10px;
-  height: 50px;
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.app-header nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.app-header nav a {
+  color: white;
+  text-decoration: none;
 }
 
 .app-content {
-  padding-top: 40px;
-  flex-grow: 1;
+  flex: 1;
   overflow-y: auto;
-}
-
-.sidebar-toggle-icon {
-  cursor: pointer;
-}
-
-.app-title {
-  margin: 0;
-}
-
-.sidebar-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #f4f4f4;
-}
-
-.sidebar-title {
-  margin: 0;
-}
-
-.sidebar-close-icon {
-  cursor: pointer;
-}
-
-.sidebar-body {
-  flex: 1;
-  padding: 20px;
-  background-color: #fff;
-}
-
-.sidebar-links {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-links li {
-  margin-bottom: 10px;
-}
-
-.sidebar-links a {
-  text-decoration: none;
-  color: #333;
-  display: block;
-  padding: 10px 15px;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.sidebar-links a:hover {
-  background-color: #f4f4f4;
-  color: #000;
-}
-
-.app-main {
-  flex: 1;
+  padding: 1rem;
 }
 
 .app-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: #333;
   color: white;
+  padding: 1rem;
   text-align: center;
-  padding: 2px 5px;
-  margin: 0;
-  font-size: 14px;
-  flex-shrink: 0;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
 }
 
-.language-switcher {
-  display: flex;
-  align-items: center;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.language-switcher button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: 10px;
-}
-/* ... (keep existing styles) ... */
+/* Remove any padding or margin from these classes if they exist */
+/* .app-header, .app-footer {
+  display: none;
+} */
+
+/* ... (keep other existing styles that don't add unnecessary space) ... */
 
