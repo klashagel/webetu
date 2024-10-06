@@ -1,19 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom';
+import './styles/tailwind.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import DataProvider from './contexts/DataProvider';
-import './i18n'; // Import the i18n configuration file
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
- 
-  <App />
-
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

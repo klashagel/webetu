@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ConfigProvider } from './contexts/ConfigContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import WebSocketProvider from './contexts/WebSocketProvider';
 import ControllersDataProvider from './contexts/ControllersDataProvider';
 import Login from './pages/Login';
@@ -48,41 +49,43 @@ class ErrorBoundary extends React.Component {
 const App = () => {
   return (
     <ConfigProvider>
-      <Router>
-        <ErrorBoundary>
-          <WebSocketProvider>
-            <ControllersDataProvider>
-              <SerialAnalogDataProvider>
-                <SerialDigitalDataProvider>
-                  <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/" element={<Navigate replace to="/login" />} />
-                    <Route path="/home" element={
-                      <div className="app-container">
-                        <Header />
-                        <div className="app-content">
-                          <Breadcrumb />
-                          <Home />
+      <ThemeProvider>
+        <Router>
+          <ErrorBoundary>
+            <WebSocketProvider>
+              <ControllersDataProvider>
+                <SerialAnalogDataProvider>
+                  <SerialDigitalDataProvider>
+                    <Routes>
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/" element={<Navigate replace to="/login" />} />
+                      <Route path="/home" element={
+                        <div className="app-container">
+                          <Header />
+                          <div className="app-content">
+                            <Breadcrumb />
+                            <Home />
+                          </div>
+                          <Footer />
                         </div>
-                        <Footer />
-                      </div>
-                    } />
-                    <Route path="/Epic4Manual/:ip" element={<Epic4Manual />} />
-                    <Route path="/Epic4Firmware" element={<Epic4Firmware />} />
-                    <Route path="/Epic4Auto/:ip" element={<Epic4Auto />} />
-                    <Route path="/epic4/main/:ip" element={<Epic4Main />} /> {/* Make sure this line is correct */}
-                    <Route path="/UnknownManual/:ip" element={<UnknownManual />} />
-                    <Route path="/LuaCodeEditor" element={<LuaCodeEditor fileId="1" />} />
-                    <Route path="/ConfigEditor" element={<ConfigEditor />} />
-                    <Route path="/FatReport" element={<FatReport />} />
-                  </Routes>
-                  <ToastContainer />
-                </SerialDigitalDataProvider>
-              </SerialAnalogDataProvider>
-            </ControllersDataProvider>
-          </WebSocketProvider>
-        </ErrorBoundary>
-      </Router>
+                      } />
+                      <Route path="/Epic4Manual/:ip" element={<Epic4Manual />} />
+                      <Route path="/Epic4Firmware" element={<Epic4Firmware />} />
+                      <Route path="/Epic4Auto/:ip" element={<Epic4Auto />} />
+                      <Route path="/epic4/main/:ip" element={<Epic4Main />} /> {/* Make sure this line is correct */}
+                      <Route path="/UnknownManual/:ip" element={<UnknownManual />} />
+                      <Route path="/LuaCodeEditor" element={<LuaCodeEditor fileId="1" />} />
+                      <Route path="/ConfigEditor" element={<ConfigEditor />} />
+                      <Route path="/FatReport" element={<FatReport />} />
+                    </Routes>
+                    <ToastContainer />
+                  </SerialDigitalDataProvider>
+                </SerialAnalogDataProvider>
+              </ControllersDataProvider>
+            </WebSocketProvider>
+          </ErrorBoundary>
+        </Router>
+      </ThemeProvider>
     </ConfigProvider>
   );
 };
