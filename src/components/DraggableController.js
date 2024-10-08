@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import ResizableController from './ResizableController';
 
-const DraggableController = ({ children, initialSize, onResize, selected, onDragStart, onDragEnd, index, isResizeEnabled, isDragDropEnabled, isEditMode, title }) => {
+const DraggableController = ({ children, initialSize, onResize, selected, onDragStart, onDragEnd, index, isResizeEnabled, isDragDropEnabled, isEditMode, title, isDarkMode }) => {
   const dragRef = useRef(null);
 
   const handleDragStart = (e) => {
@@ -30,8 +30,9 @@ const DraggableController = ({ children, initialSize, onResize, selected, onDrag
         onResize={onResize} 
         selected={selected}
         isResizeEnabled={isResizeEnabled}
-        isEditMode={isEditMode}  // Add this line
+        isEditMode={isEditMode}
         title={title}
+        isDarkMode={isDarkMode}
       >
         {children}
       </ResizableController>

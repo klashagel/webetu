@@ -6,16 +6,18 @@ import ControllerPanelUnknown from './ControllerPanelUnknown';
 import DraggableController from './DraggableController';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Etu = () => {
   const { data, error } = useContext(ControllersDataContext);
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
 
   const [controllerData, setControllerData] = useState([]);
   const [controllerOrder, setControllerOrder] = useState([]);
   const [panelSizes, setPanelSizes] = useState({});
   const [draggedIndex, setDraggedIndex] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(true);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [showUnknown, setShowUnknown] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -179,12 +181,14 @@ const Etu = () => {
           isDragDropEnabled={isEditMode}
           isEditMode={isEditMode}
           title={`Controller ${item.ip}`}
+          isDarkMode={isDarkMode}
         >
           <Panel
             item={item}
             onSelect={() => handleSelect(controllerData.findIndex(data => data.ip === item.ip))}
             onDoubleClick={() => item.ctrlType === 'UNKNOWN' ? handleDoubleClickUnknown(item.ip) : handleDoubleClickEpic4(item.ip)}
             selected={item.selected}
+            isDarkMode={isDarkMode}
           />
         </DraggableController>
       </div>
@@ -192,28 +196,50 @@ const Etu = () => {
   };
 
   if (error) {
-    return <p className="text-red-500 p-4">Error: {error.message}</p>;
+    return <p className={`text-red-500 p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>Error: {error.message}</p>;
   }
 
   return (
-    <div className="relative flex flex-col h-full">
-      <div className="flex justify-between items-start p-2">
+     <div className={`relative flex flex-col min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+  <div className="flex justify-between items-start p-2">
         <div className="flex-grow flex flex-wrap justify-start">
           {controllerOrder.map((ip, index) => renderControllerPanel(ip, index))}
         </div>
         <div className="flex-shrink-0 ml-2">
-          <IconButton onClick={handleMenuOpen}>
+          <IconButton 
+            onClick={handleMenuOpen} 
+            style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+          >
             <MoreVertIcon />
           </IconButton>
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleMenuClose}
+            PaperProps={{
+              style: {
+                backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
+                color: isDarkMode ? '#ffffff' : '#000000',
+                boxShadow: isDarkMode ? '0 2px 8px rgba(255, 255, 255, 0.15)' : '0 2px 8px rgba(0, 0, 0, 0.15)',
+              },
+            }}
           >
-            <MenuItem onClick={toggleEditMode}>
+            <MenuItem 
+              onClick={toggleEditMode}
+              style={{
+                backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
+                color: isDarkMode ? '#ffffff' : '#000000',
+              }}
+            >
               {isEditMode ? 'Lock Layout' : 'Edit Layout'}
             </MenuItem>
-            <MenuItem onClick={toggleShowUnknown}>
+            <MenuItem 
+              onClick={toggleShowUnknown}
+              style={{
+                backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
+                color: isDarkMode ? '#ffffff' : '#000000',
+              }}
+            >
               {showUnknown ? 'Hide Unknown Controllers' : 'Show Unknown Controllers'}
             </MenuItem>
           </Menu>

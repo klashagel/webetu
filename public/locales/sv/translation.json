@@ -4,5 +4,21 @@
   "Enter your credentials to access your account": "Ange dina inloggningsuppgifter för att komma åt ditt konto",
   "Username": "Användarnamn",
   "Password": "Lösenord",
-  "admin": "admin"
+  "admin": "admin",
+  "Logout": "Logga ut",
+  "Confirm Logout": "Bekräfta utloggning",
+  "Are you sure you want to logout?": "Är du säker på att du vill logga ut?",
+  "ao1_label": "AO1",
+  "ao1_placeholder": "Enter AO1 value",
+  "ao2_label": "AO2",
+  "ao2_placeholder": "Enter AO2 value",
+  "act_mode_firing_ratio_label": "Firing Ratio",
+  "act_mode_firing_ratio_placeholder": "Enter firing ratio (0-100)",
+  "manual": "Manual",
+  "auto": "Auto",
+  "tron": "TRON",
+  "reset": "Reset",
+  "testmode": "TESTMODE",
+  "select_item": "Select an Item",
+  "selected_item": "Selected Item"
 }

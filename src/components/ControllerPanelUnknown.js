@@ -1,7 +1,10 @@
 import React from 'react';
 import '../styles/ControllerPanelItem.css';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ControllerPanelUnknown = ({ item, onSelect, onDoubleClick, style }) => {
+  const { isDarkMode } = useTheme();
+
   return (
     <div
       onClick={onSelect}
@@ -12,6 +15,7 @@ const ControllerPanelUnknown = ({ item, onSelect, onDoubleClick, style }) => {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: '10px',
+        color: isDarkMode ? '#ecf0f1' : '#333',
       }}
     >
       <p className="paragraph">IP: {item.ip}</p>

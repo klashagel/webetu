@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { ControllersDataContext } from '../contexts/ControllersDataProvider';
 import { useConfigContext } from '../contexts/ConfigContext';
+import { modbusRegisterMatrix } from '../constants/epic4tags';
 import styles from '../styles/ModbusTextInput.module.css';
 
 const ModbusTextInputNew = ({
@@ -8,8 +9,6 @@ const ModbusTextInputNew = ({
   registerPath,
   ip,
   register,
-  convertToDisplay,
-  convertToValue,
 }) => {
   const { data, error, getControllerField } = useContext(ControllersDataContext);
   const { restUrl } = useConfigContext();
@@ -21,9 +20,26 @@ const ModbusTextInputNew = ({
   const inputRef = useRef(null);
   const measuringSpanRef = useRef(null);
 
+  const registerInfo = modbusRegisterMatrix[registerPath[0]];
+  console.log('Register Info:', registerInfo); // Debug log
+
+  const convertToDisplay = typeof registerInfo?.convertToDisplay === 'function'
+    ? registerInfo.convertToDisplay
+    : (value => {
+        console.log('Using default convertToDisplay in ModbusTextInputNew'); // Debug log
+        return value;
+      });
+  const convertToValue = typeof registerInfo?.convertToValue === 'function'
+    ? registerInfo.convertToValue
+    : (value => {
+        console.log('Using default convertToValue in ModbusTextInputNew'); // Debug log
+        return value;
+      });
+
   useEffect(() => {
     if (!editing) {
       const extractedValue = getControllerField(ip, registerPath);
+      console.log('Extracted Value in ModbusTextInputNew:', extractedValue); // Debug log
       setInputValue(extractedValue !== null && extractedValue !== undefined
         ? convertToDisplay(extractedValue)
         : '');

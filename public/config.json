@@ -1,6 +1,6 @@
 {
 
-  "websocketUrl": "ws://localhost:2000/ws",
-  "restUrl": "http://localhost:12345"
+  "websocketUrl": "ws://192.168.1.45:2000/ws",
+  "restUrl": "http://192.168.1.45:12345"
 
 }

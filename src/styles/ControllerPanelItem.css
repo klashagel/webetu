@@ -17,18 +17,21 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 20px;
+    width: 100%;
     height: 20px;
     background-color: red;
-    animation: blink-animation 1s infinite;
+    animation: blink 1s linear infinite;
   }
   
-  @keyframes blink-animation {
+  .blinking-rectangle.dark {
+    background-color: #e74c3c;
+  }
+  
+  @keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 1; }
   }
-
 
   .buttonContainer {
     display: flex; /* Use flexbox layout */
@@ -40,4 +43,14 @@
     /* Ensure all buttons have the same size */
     width: 120px;
     height: 40px;
+  }
+
+  .globalButtonRow {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+
+  .paragraph {
+    margin-bottom: 5px;
   }
