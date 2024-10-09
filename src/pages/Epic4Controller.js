@@ -62,8 +62,15 @@ const Epic4Controller = () => {
         </div>
 
         <div className={`mb-4 ${borderColor}`}>
-          <ModbusNumberInput registerPath={['SecVoltAvg']} ip={ip} />
+          <ModbusNumberInput registerPath={['ActModeVoltPeak']} ip={ip} width='w-36'/>
         </div>
+
+        <div className={`mb-4 ${borderColor}`}>
+          <ModbusNumberInput registerPath={['ActModeFiringRatio']} ip={ip} width='w-36'/>
+        </div>
+       
+        
+
 
 
         <div className="mt-8">

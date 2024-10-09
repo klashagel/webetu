@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="app-footer">
       <div className="footer-content">
-        <p>&copy; 2023 EMP Pro. All rights reserved.</p>
+        <p>&copy; Web Etu 1.0. All rights reserved.</p>
       </div>
     </footer>
   );

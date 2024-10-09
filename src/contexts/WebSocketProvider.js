@@ -33,8 +33,6 @@ const WebSocketProvider = ({ children }) => {
               messageIdSet.current.add(parsedData.messageid); // Add to the set of processed messages
               queue.current.push(parsedData); // Add to the queue
               console.log(`Queue length after push: ${queue.current.length}`); // Log queue length
-              // Optionally, use a debounce or throttle mechanism here to control processing frequency
-              setMessages(prevMessages => [...prevMessages, parsedData]);
             }
           } catch (parseError) {
             console.error('Error parsing JSON from message:', parseError);
@@ -49,6 +47,13 @@ const WebSocketProvider = ({ children }) => {
 
     ws.onerror = (error) => {
       console.error('WebSocket Error: ', error);
+    };
+
+    ws.onclose = () => {
+      console.error("WebSocket closed, attempting to reconnect...");
+      setTimeout(() => {
+        setSocket(new WebSocket(websocketUrl)); // Reconnect after delay
+      }, 5000); // Adjust reconnection delay as needed
     };
 
     return () => {

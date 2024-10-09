@@ -21,6 +21,13 @@ const ControllerPanelEpic4 = ({ item, onSelect, onDoubleClick, selected }) => {
     return str.split('').filter(char => char.charCodeAt(0) !== 0).join('').trim();
   };
 
+  const inputConfigs = [
+    { registerPath: ['ActModeFiringRatio'], width: 'w-32' },
+    { registerPath: ['FIELDPOSITION'], width: 'w-32' },
+
+    // Add more configurations as needed
+  ];
+
   return (
     <div
       onClick={onSelect}
@@ -36,16 +43,23 @@ const ControllerPanelEpic4 = ({ item, onSelect, onDoubleClick, selected }) => {
     >
       <div style={{ flexGrow: 1, overflow: 'auto' }}>
   
-        <p className="paragraph">IP: {sanitizeString(item.ip)}</p>
+        <p className="paragraph">IP: {sanitizeString(item.Controller.name)}</p>
         {item.Controller && (
-          <p className="paragraph">Name: {sanitizeString(item.Controller.mac)}</p>
+          <p className="paragraph">Name: {sanitizeString(item.name)}</p>
         )}
         <p className="paragraph">Last Active: {item.lastActive}</p>
       </div>
-      <div className={`mb-4 ${borderColor}`}>
-          <ModbusNumberInput registerPath={['ActModeFiringRatio']} ip={item.ip} width = 'w-32'/>
-        </div>
-   
+      <div className="grid grid-cols-2 gap-4 mb-4">
+      {inputConfigs.map((config, index) => (
+        <ModbusNumberInput
+          key={index}
+          registerPath={config.registerPath}
+          ip={item.ip}
+          width={config.width}
+          label={config.label}
+        />
+      ))}
+    </div>
 
    
     </div>

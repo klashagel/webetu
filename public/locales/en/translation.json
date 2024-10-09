@@ -21,5 +21,6 @@
   "reset": "Reset",
   "testmode": "TESTMODE",
   "select_item": "Select an Item",
-  "selected_item": "Selected Item"
+  "selected_item": "Selected Item",
+  "act_mode_volt_peak_label": "Voltage peak limit"
 }

@@ -2162,8 +2162,8 @@ export const modbusRegisterMatrix = {
   FIELDPOSITION: {
     registerPath: ['FIELDPOSITION'],
     register: 'HO_1112',
-    convertToDisplay: (value) => value,
-    convertToValue: (value) => parseInt(value),
+    convertToDisplay: (value) => String.fromCharCode(value),
+    convertToValue: (value) => value.charCodeAt(0),
     placeholderKey: 'fieldposition_placeholder',
     labelKey: 'fieldposition_label',
     style: {
@@ -2256,6 +2256,21 @@ export const modbusRegisterMatrix = {
     convertToValue: (value) => parseInt(value),
     placeholderKey: 'testauxinp1_placeholder',
     labelKey: 'testauxinp1_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ActModeCurrLim: {
+    registerPath: ['TESTAUXINP1'],
+    register: 'HO_1043',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    placeholderKey: 'testauxinp1_placeholder',
+    labelKey: 'actmode_curr_limit_label',
     style: {
       height: '30px',
       lineHeight: '30px',

@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <header className={`app-header ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`} style={{padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-      <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>EMP Pro</h1>
+      <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Web Etu 1.0</h1>
       <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
         <select
           onChange={handleLanguageChange}
