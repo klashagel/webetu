@@ -22,5 +22,47 @@
   "testmode": "TESTMODE",
   "select_item": "Select an Item",
   "selected_item": "Selected Item",
-  "act_mode_volt_peak_label": "Voltage peak limit"
+  "act_mode_volt_peak_label": "Voltage peak limit",
+
+  "act_mode_cr_label": "Current Regulation",
+  "act_mode_cr_placeholder": "Enter current regulation value",
+  
+  "act_mode_rapp_factor_label": "Rapp Factor",
+  "act_mode_rapp_factor_placeholder": "Enter Rapp factor",
+  
+  "act_mode_spm_label": "Sparks recovery (ms)",
+  "act_mode_spm_placeholder": "Enter sparks reovery",
+  
+  "idle_curr_label": "Idle Current",
+  "idle_curr_placeholder": "Enter idle current",
+  
+  "ign_angle_label": "Ignition Angle",
+  "ign_angle_placeholder": "Enter ignition angle",
+  
+  "act_mode_step_label": "Step Mode",
+  "act_mode_step_placeholder": "Enter step mode value",
+  
+  "act_mode_spark_quench_label": "Spark Quench",
+  "act_mode_spark_quench_placeholder": "Enter spark quench value",
+  
+  "resistivity_label": "Resistivity",
+  "resistivity_placeholder": "Enter resistivity",
+  
+  "rise_slope_a_label": "Rise Slope A",
+  "rise_slope_a_placeholder": "Enter rise slope A",
+  
+  "rise_slope_c_label": "Rise Slope C",
+  "rise_slope_c_placeholder": "Enter rise slope C",
+  
+  "rise_time_a_label": "Rise Time A",
+  "rise_time_a_placeholder": "Enter rise time A",
+  
+  "arcdet_lev_label": "Arc Detection Level",
+  "arcdet_lev_placeholder": "Enter arc detection level",
+  
+  "arc_quench_label": "Arc Quench",
+  "arc_quench_placeholder": "Enter arc quench value",
+
+"dust_resistivity_placeholder" : "Enter dust resistivity",
+"dust_resistivity_label" : "Dust resitivity"
 }

@@ -139,11 +139,13 @@ const ModbusNumberInput = ({ registerPath, ip, width = 'w-full' }) => {
     ${isDarkMode ? 'bg-gray-700 text-white/70' : 'bg-white text-black/60'}
   `;
 
+  const unit = registerInfo?.unit || ''; // Get the unit from registerInfo
+
   const spanClasses = `
-    h-10 flex items-center border rounded 
+    h-10 flex items-center rounded 
     px-3.5 cursor-text text-base bg-transparent
     ${width}
-    ${isDarkMode ? 'border-white/23 text-white' : 'border-black/23 text-black/87'}
+    ${isDarkMode ? 'text-white' : 'text-black/87'}
   `;
 
   return (
@@ -162,7 +164,7 @@ const ModbusNumberInput = ({ registerPath, ip, width = 'w-full' }) => {
             size="small"
             autoFocus
             inputRef={inputRef}
-            label={t(registerInfo?.labelKey || 'Value')}
+            label={`${t(registerInfo?.labelKey || 'Value')} `}
             fullWidth
             InputLabelProps={{
               className: labelClasses
@@ -174,13 +176,15 @@ const ModbusNumberInput = ({ registerPath, ip, width = 'w-full' }) => {
         ) : (
           <div className={`relative ${width}`}>
             <span className={labelClasses}>
-            {t(registerInfo?.labelKey || 'Value')}
+              {`${t(registerInfo?.labelKey || 'Value')} `}
             </span>
             <span
               onClick={handleLabelClick}
               className={spanClasses}
             >
-              {inputValue || placeholder}
+              {inputValue !== '' && inputValue !== null && inputValue !== undefined 
+                ? `${inputValue}${unit ? ` ${unit}` : ''}` 
+                : placeholder}
             </span>
           </div>
         )}

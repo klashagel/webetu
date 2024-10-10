@@ -4,6 +4,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_16',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'limiter_placeholder',
     labelKey: 'limiter_label',
     style: {
@@ -19,6 +20,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_17',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'act_curr_lim_placeholder',
     labelKey: 'act_curr_lim_label',
     style: {
@@ -34,6 +36,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_18',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'semipulse_placeholder',
     labelKey: 'semipulse_label',
     style: {
@@ -49,6 +52,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_19',
     convertToDisplay: (value) => (value),
     convertToValue: (value) => Math.round(parseFloat(value) * 100),
+    unit: 'mA',
     placeholderKey: 'firing_ratio_placeholder',
     labelKey: 'firing_ratio_label',
     style: {
@@ -64,6 +68,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_20',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'act_firing_angle_placeholder',
     labelKey: 'act_firing_angle_label',
     style: {
@@ -79,6 +84,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_21',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'fr_limiter_placeholder',
     labelKey: 'fr_limiter_label',
     style: {
@@ -94,6 +100,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_22',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sec_curr_pulse_a_placeholder',
     labelKey: 'sec_curr_pulse_a_label',
     style: {
@@ -109,6 +116,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_23',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sec_curr_pulse_b_placeholder',
     labelKey: 'sec_curr_pulse_b_label',
     style: {
@@ -124,6 +132,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_24',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'line_volt_rms_placeholder',
     labelKey: 'line_volt_rms_label',
     style: {
@@ -139,6 +148,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_25',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'pri_curr_rms_placeholder',
     labelKey: 'pri_curr_rms_label',
     style: {
@@ -154,6 +164,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_26',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'act_power_placeholder',
     labelKey: 'act_power_label',
     style: {
@@ -169,6 +180,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_27',
     convertToDisplay: (value) => (value),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'sec_volt_avg_placeholder',
     labelKey: 'sec_volt_avg_label',
     style: {
@@ -184,6 +196,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_28',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sec_pulse_curr_placeholder',
     labelKey: 'sec_pulse_curr_label',
     style: {
@@ -199,6 +212,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_29',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sec_curr_density_placeholder',
     labelKey: 'sec_curr_density_label',
     style: {
@@ -214,6 +228,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_30',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'spm_placeholder',
     labelKey: 'spm_label',
     style: {
@@ -229,6 +244,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_32',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'pri_curr_avg_placeholder',
     labelKey: 'pri_curr_avg_label',
     style: {
@@ -244,6 +260,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_33',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'app_power_placeholder',
     labelKey: 'app_power_label',
     style: {
@@ -259,6 +276,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_34',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'aux_curr_placeholder',
     labelKey: 'aux_curr_label',
     style: {
@@ -274,6 +292,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_35',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'sec_volt_peak_placeholder',
     labelKey: 'sec_volt_peak_label',
     style: {
@@ -289,6 +308,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_36',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'sec_volt_valley_placeholder',
     labelKey: 'sec_volt_valley_label',
     style: {
@@ -304,6 +324,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_37',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sec_curr_peak_placeholder',
     labelKey: 'sec_curr_peak_label',
     style: {
@@ -319,6 +340,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_38',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sec_curr_avg_placeholder',
     labelKey: 'sec_curr_avg_label',
     style: {
@@ -334,6 +356,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_39',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'sched_rapdelay_placeholder',
     labelKey: 'sched_rapdelay_label',
     style: {
@@ -349,6 +372,7 @@ export const modbusRegisterMatrix = {
     register: ['IN_42', 'IN_43'],
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'accumulated_sparks_placeholder',
     labelKey: 'accumulated_sparks_label',
     style: {
@@ -364,6 +388,7 @@ export const modbusRegisterMatrix = {
     register: ['IN_44', 'IN_45'],
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'accumulated_arcs_placeholder',
     labelKey: 'accumulated_arcs_label',
     style: {
@@ -379,6 +404,7 @@ export const modbusRegisterMatrix = {
     register: ['IN_46', 'IN_47'],
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+     unit: 'mA',
     placeholderKey: 'accumulated_doublesparks_placeholder',
     labelKey: 'accumulated_doublesparks_label',
     style: {
@@ -394,6 +420,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_51',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'epoq_opt_fr_placeholder',
     labelKey: 'epoq_opt_fr_label',
     style: {
@@ -409,6 +436,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_58',
     convertToDisplay: (value) => value,
     convertToValue: (value) => Math.round(parseFloat(value)),
+    unit: 'mA',
     placeholderKey: 'ambient_temp_placeholder',
     labelKey: 'ambient_temp_label',
     style: {
@@ -424,6 +452,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_59',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'line_freq_placeholder',
     labelKey: 'line_freq_label',
     style: {
@@ -439,6 +468,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_73',
     convertToDisplay: (value) => (value / 100).toFixed(2),
     convertToValue: (value) => Math.round(parseFloat(value) * 100),
+    unit: 'mA',
     placeholderKey: 'opacity_mom_placeholder',
     labelKey: 'opacity_mom_label',
     style: {
@@ -454,6 +484,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_74',
     convertToDisplay: (value) => (value / 100).toFixed(2),
     convertToValue: (value) => Math.round(parseFloat(value) * 100),
+    unit: 'mA',
     placeholderKey: 'opacity_avg_placeholder',
     labelKey: 'opacity_avg_label',
     style: {
@@ -469,6 +500,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_85',
     convertToDisplay: (value) => (value / 10).toFixed(1),
     convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
     placeholderKey: 'tot_power_act_placeholder',
     labelKey: 'tot_power_act_label',
     style: {
@@ -484,6 +516,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_0',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'sum_alarm_placeholder',
     labelKey: 'sum_alarm_label',
     style: {
@@ -499,6 +532,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_1',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_temp_high_w_placeholder',
     labelKey: 'al_temp_high_w_label',
     style: {
@@ -514,6 +548,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_2',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_temp_high_t_placeholder',
     labelKey: 'al_temp_high_t_label',
     style: {
@@ -529,6 +564,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_3',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_oil_w_placeholder',
     labelKey: 'al_oil_w_label',
     style: {
@@ -544,6 +580,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_4',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_oil_t_placeholder',
     labelKey: 'al_oil_t_label',
     style: {
@@ -559,6 +596,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_5',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_lv_isolation_t_placeholder',
     labelKey: 'al_lv_isolation_t_label',
     style: {
@@ -574,6 +612,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_6',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_hv_safety_t_placeholder',
     labelKey: 'al_hv_safety_t_label',
     style: {
@@ -589,6 +628,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_7',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_scr_temp_high_t_placeholder',
     labelKey: 'al_scr_temp_high_t_label',
     style: {
@@ -604,6 +644,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_8',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_ac_curr_high_t_placeholder',
     labelKey: 'al_ac_curr_high_t_label',
     style: {
@@ -619,6 +660,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_9',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_dc_volt_low_t_placeholder',
     labelKey: 'al_dc_volt_low_t_label',
     style: {
@@ -634,6 +676,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_10',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_dc_volt_low_w_placeholder',
     labelKey: 'al_dc_volt_low_w_label',
     style: {
@@ -649,6 +692,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_11',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_dc_volt_high_t_placeholder',
     labelKey: 'al_dc_volt_high_t_label',
     style: {
@@ -664,6 +708,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_12',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_no_contactor_t_placeholder',
     labelKey: 'al_no_contactor_t_label',
     style: {
@@ -679,6 +724,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_13',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_realtime_clock_reini_w_placeholder',
     labelKey: 'al_realtime_clock_reini_w_label',
     style: {
@@ -694,6 +740,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_14',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_watch_dog_reset_t_placeholder',
     labelKey: 'al_watch_dog_reset_t_label',
     style: {
@@ -709,6 +756,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_15',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_controller_restarted_t_placeholder',
     labelKey: 'al_controller_restarted_t_label',
     style: {
@@ -724,6 +772,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_16',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_io_grp1_w_placeholder',
     labelKey: 'al_io_grp1_w_label',
     style: {
@@ -738,6 +787,7 @@ export const modbusRegisterMatrix = {
     registerPath: ['AlIoGrp2W'],
     register: 'DI_17',
     convertToDisplay: (value) => value,
+    unit: 'mA',
     convertToValue: (value) => parseInt(value),
     placeholderKey: 'al_io_grp2_w_placeholder',
     labelKey: 'al_io_grp2_w_label',
@@ -754,6 +804,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_18',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_io_grp3_w_placeholder',
     labelKey: 'al_io_grp3_w_label',
     style: {
@@ -769,6 +820,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_19',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_io_grp4_w_placeholder',
     labelKey: 'al_io_grp4_w_label',
     style: {
@@ -783,6 +835,7 @@ export const modbusRegisterMatrix = {
     registerPath: ['AlRapSeqOffW'],
     register: 'DI_20',
     convertToDisplay: (value) => value,
+    unit: 'mA',
     convertToValue: (value) => parseInt(value),
     placeholderKey: 'al_rap_seq_off_w_placeholder',
     labelKey: 'al_rap_seq_off_w_label',
@@ -799,6 +852,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_21',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_rap_seq_cont_w_placeholder',
     labelKey: 'al_rap_seq_cont_w_label',
     style: {
@@ -814,6 +868,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_22',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_trpt_off_w_placeholder',
     labelKey: 'al_trpt_off_w_label',
     style: {
@@ -829,6 +884,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_23',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern1_w_placeholder',
     labelKey: 'al_extern1_w_label',
     style: {
@@ -844,6 +900,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_24',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern1_t_placeholder',
     labelKey: 'al_extern1_t_label',
     style: {
@@ -859,6 +916,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_25',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern2_w_placeholder',
     labelKey: 'al_extern2_w_label',
     style: {
@@ -874,6 +932,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_26',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern2_t_placeholder',
     labelKey: 'al_extern2_t_label',
     style: {
@@ -889,6 +948,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_27',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern3_w_placeholder',
     labelKey: 'al_extern3_w_label',
     style: {
@@ -904,6 +964,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_28',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern3_t_placeholder',
     labelKey: 'al_extern3_t_label',
     style: {
@@ -919,6 +980,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_29',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern4_w_placeholder',
     labelKey: 'al_extern4_w_label',
     style: {
@@ -934,6 +996,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_30',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern4_t_placeholder',
     labelKey: 'al_extern4_t_label',
     style: {
@@ -949,6 +1012,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_31',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_epoq_sprk_lo_v_w_placeholder',
     labelKey: 'al_epoq_sprk_lo_v_w_label',
     style: {
@@ -964,6 +1028,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_32',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_epoq_ref_meas_w_placeholder',
     labelKey: 'al_epoq_ref_meas_w_label',
     style: {
@@ -979,6 +1044,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_33',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_vi_prev_w_placeholder',
     labelKey: 'al_vi_prev_w_label',
     style: {
@@ -994,6 +1060,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_34',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'master_sum_alarm_placeholder',
     labelKey: 'master_sum_alarm_label',
     style: {
@@ -1009,6 +1076,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_35',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_factory_reset_w_placeholder',
     labelKey: 'al_factory_reset_w_label',
     style: {
@@ -1024,6 +1092,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_36',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern5_w_placeholder',
     labelKey: 'al_extern5_w_label',
     style: {
@@ -1039,6 +1108,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_37',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern5_t_placeholder',
     labelKey: 'al_extern5_t_label',
     style: {
@@ -1054,6 +1124,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_38',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern6_w_placeholder',
     labelKey: 'al_extern6_w_label',
     style: {
@@ -1069,6 +1140,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_39',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_extern6_t_placeholder',
     labelKey: 'al_extern6_t_label',
     style: {
@@ -1084,6 +1156,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_40',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_local_block_write_w_placeholder',
     labelKey: 'al_local_block_write_w_label',
     style: {
@@ -1099,6 +1172,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_41',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_prog_mismatch_w_placeholder',
     labelKey: 'al_prog_mismatch_w_label',
     style: {
@@ -1114,6 +1188,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_42',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_io_grp5_w_placeholder',
     labelKey: 'al_io_grp5_w_label',
     style: {
@@ -1129,6 +1204,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_43',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'epoq_last_ref_ok_placeholder',
     labelKey: 'epoq_last_ref_ok_label',
     style: {
@@ -1144,6 +1220,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_44',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'epoq_optimizing_placeholder',
     labelKey: 'epoq_optimizing_label',
     style: {
@@ -1159,6 +1236,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_45',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'opac_calib_placeholder',
     labelKey: 'opac_calib_label',
     style: {
@@ -1174,6 +1252,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_48',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act1_in_placeholder',
     labelKey: 'io_grp_act1_in_label',
     style: {
@@ -1189,6 +1268,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_49',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act1_out_placeholder',
     labelKey: 'io_grp_act1_out_label',
     style: {
@@ -1204,6 +1284,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_50',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act2_in_placeholder',
     labelKey: 'io_grp_act2_in_label',
     style: {
@@ -1219,6 +1300,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_51',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act2_out_placeholder',
     labelKey: 'io_grp_act2_out_label',
     style: {
@@ -1234,6 +1316,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_52',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act3_in_placeholder',
     labelKey: 'io_grp_act3_in_label',
     style: {
@@ -1249,6 +1332,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_53',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act3_out_placeholder',
     labelKey: 'io_grp_act3_out_label',
     style: {
@@ -1264,6 +1348,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_54',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act4_in_placeholder',
     labelKey: 'io_grp_act4_in_label',
     style: {
@@ -1279,6 +1364,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_55',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act4_out_placeholder',
     labelKey: 'io_grp_act4_out_label',
     style: {
@@ -1294,6 +1380,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_56',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act5_in_placeholder',
     labelKey: 'io_grp_act5_in_label',
     style: {
@@ -1309,6 +1396,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_57',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'io_grp_act5_out_placeholder',
     labelKey: 'io_grp_act5_out_label',
     style: {
@@ -1324,6 +1412,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_80',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'al_prog_updated_t_placeholder',
     labelKey: 'al_prog_updated_t_label',
     style: {
@@ -1339,6 +1428,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_82',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'sum_alarm_t_placeholder',
     labelKey: 'sum_alarm_t_label',
     style: {
@@ -1369,6 +1459,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_86',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+     unit: 'mA',
     placeholderKey: 'al_loss_of_sync_t_placeholder',
     labelKey: 'al_loss_of_sync_t_label',
     style: {
@@ -1384,6 +1475,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_87',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'tr_on_status_placeholder',
     labelKey: 'tr_on_status_label',
     style: {
@@ -1399,6 +1491,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_88',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+     unit: 'mA',
     placeholderKey: 'measurement_placeholder',
     labelKey: 'measurement_label',
     style: {
@@ -1414,6 +1507,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_89',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'collector_rapping_placeholder',
     labelKey: 'collector_rapping_label',
     style: {
@@ -1429,6 +1523,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16384',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'tr_on_placeholder',
     labelKey: 'tr_on_label',
     style: {
@@ -1444,6 +1539,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16388',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'master_placeholder',
     labelKey: 'master_label',
     style: {
@@ -1459,6 +1555,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16385',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+     unit: 'mA',
     placeholderKey: 'act_mode_epoq_placeholder',
     labelKey: 'act_mode_epoq_label',
     style: {
@@ -1474,6 +1571,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16386',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'act_mode_rapp_all_placeholder',
     labelKey: 'act_mode_rapp_all_label',
     style: {
@@ -1489,6 +1587,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16387',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'act_mode_op_opt_placeholder',
     labelKey: 'act_mode_op_opt_label',
     style: {
@@ -1504,6 +1603,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1041',
     convertToDisplay: (value) => value + 1,
     convertToValue: (value) => parseInt(value) - 1,
+    unit: 'mA',
     placeholderKey: 'mode_placeholder',
     labelKey: 'mode_label',
     style: {
@@ -1519,6 +1619,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_64',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di01_placeholder',
     labelKey: 'di01_label',
     style: {
@@ -1534,6 +1635,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_65',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di02_placeholder',
     labelKey: 'di02_label',
     style: {
@@ -1549,6 +1651,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_66',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di03_placeholder',
     labelKey: 'di03_label',
     style: {
@@ -1564,6 +1667,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_67',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di04_placeholder',
     labelKey: 'di04_label',
     style: {
@@ -1579,6 +1683,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_68',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di05_placeholder',
     labelKey: 'di05_label',
     style: {
@@ -1594,6 +1699,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_69',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di06_placeholder',
     labelKey: 'di06_label',
     style: {
@@ -1609,6 +1715,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_70',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di07_placeholder',
     labelKey: 'di07_label',
     style: {
@@ -1624,6 +1731,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_71',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di08_placeholder',
     labelKey: 'di08_label',
     style: {
@@ -1639,6 +1747,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_72',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di09_placeholder',
     labelKey: 'di09_label',
     style: {
@@ -1654,6 +1763,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_73',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di10_placeholder',
     labelKey: 'di10_label',
     style: {
@@ -1669,6 +1779,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_74',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di11_placeholder',
     labelKey: 'di11_label',
     style: {
@@ -1684,6 +1795,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_75',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di12_placeholder',
     labelKey: 'di12_label',
     style: {
@@ -1699,6 +1811,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_76',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di13_placeholder',
     labelKey: 'di13_label',
     style: {
@@ -1714,6 +1827,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_77',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di14_placeholder',
     labelKey: 'di14_label',
     style: {
@@ -1729,6 +1843,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_78',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di15_placeholder',
     labelKey: 'di15_label',
     style: {
@@ -1744,6 +1859,7 @@ export const modbusRegisterMatrix = {
     register: 'DI_79',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di16_placeholder',
     labelKey: 'di16_label',
     style: {
@@ -1759,6 +1875,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_94',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di17_placeholder',
     labelKey: 'di17_label',
     style: {
@@ -1774,6 +1891,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_95',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'di18_placeholder',
     labelKey: 'di18_label',
     style: {
@@ -1789,6 +1907,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1280',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name1_placeholder',
     labelKey: 'name1_label',
     style: {
@@ -1804,6 +1923,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1281',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name2_placeholder',
     labelKey: 'name2_label',
     style: {
@@ -1819,6 +1939,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1282',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name3_placeholder',
     labelKey: 'name3_label',
     style: {
@@ -1834,6 +1955,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1283',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name4_placeholder',
     labelKey: 'name4_label',
     style: {
@@ -1849,6 +1971,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1284',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name5_placeholder',
     labelKey: 'name5_label',
     style: {
@@ -1864,6 +1987,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1285',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name6_placeholder',
     labelKey: 'name6_label',
     style: {
@@ -1879,6 +2003,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1286',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name7_placeholder',
     labelKey: 'name7_label',
     style: {
@@ -1894,6 +2019,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1287',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name8_placeholder',
     labelKey: 'name8_label',
     style: {
@@ -1909,6 +2035,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1288',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name9_placeholder',
     labelKey: 'name9_label',
     style: {
@@ -1924,6 +2051,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1289',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name10_placeholder',
     labelKey: 'name10_label',
     style: {
@@ -1939,6 +2067,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1290',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name11_placeholder',
     labelKey: 'name11_label',
     style: {
@@ -1954,6 +2083,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1291',
     convertToDisplay: (value) => value,
     convertToValue: (value) => value,
+    unit: 'mA',
     placeholderKey: 'name12_placeholder',
     labelKey: 'name12_label',
     style: {
@@ -1969,6 +2099,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16432',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'do01_placeholder',
     labelKey: 'do01_label',
     style: {
@@ -1985,6 +2116,7 @@ export const modbusRegisterMatrix = {
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
     placeholderKey: 'do02_placeholder',
+    unit: 'mA',
     labelKey: 'do02_label',
     style: {
       height: '30px',
@@ -1999,6 +2131,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16434',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'do03_placeholder',
     labelKey: 'do03_label',
     style: {
@@ -2015,6 +2148,7 @@ export const modbusRegisterMatrix = {
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
     placeholderKey: 'do04_placeholder',
+    unit: 'mA',
     labelKey: 'do04_label',
     style: {
       height: '30px',
@@ -2029,6 +2163,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16436',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'do05_placeholder',
     labelKey: 'do05_label',
     style: {
@@ -2044,6 +2179,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16437',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'do06_placeholder',
     labelKey: 'do06_label',
     style: {
@@ -2059,6 +2195,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16438',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'do07_placeholder',
     labelKey: 'do07_label',
     style: {
@@ -2074,6 +2211,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1040',
     convertToDisplay: (value) => (value ).toFixed(2),
     convertToValue: (value) => Math.round(parseFloat(value) * 100),
+    unit: 'mA',
     placeholderKey: 'act_mode_firing_ratio_placeholder',
     labelKey: 'act_mode_firing_ratio_label',
     style: {
@@ -2089,6 +2227,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1042',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'act_mode_volt_peak_placeholder',
     labelKey: 'act_mode_volt_peak_label',
     style: {
@@ -2104,6 +2243,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1248',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'ao1_placeholder',
     labelKey: 'ao1_label',
     style: {
@@ -2119,6 +2259,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1249',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'ao2_placeholder',
     labelKey: 'ao2_label',
     style: {
@@ -2134,6 +2275,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16394',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'testmode_placeholder',
     labelKey: 'testmode_label',
     style: {
@@ -2149,6 +2291,7 @@ export const modbusRegisterMatrix = {
     register: 'CO_16392',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'sumalarmresetrev_placeholder',
     labelKey: 'sumalarmresetrev_label',
     style: {
@@ -2164,6 +2307,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1112',
     convertToDisplay: (value) => String.fromCharCode(value),
     convertToValue: (value) => value.charCodeAt(0),
+    unit: 'mA',
     placeholderKey: 'fieldposition_placeholder',
     labelKey: 'fieldposition_label',
     style: {
@@ -2179,6 +2323,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1115',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'cellposition_placeholder',
     labelKey: 'cellposition_label',
     style: {
@@ -2194,6 +2339,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_96',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'testseccurr_placeholder',
     labelKey: 'testseccurr_label',
     style: {
@@ -2209,6 +2355,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_97',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'testsecvolt_placeholder',
     labelKey: 'testsecvolt_label',
     style: {
@@ -2224,6 +2371,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_98',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'testprimcurrrms_placeholder',
     labelKey: 'testprimcurrrms_label',
     style: {
@@ -2238,7 +2386,7 @@ export const modbusRegisterMatrix = {
     registerPath: ['TESTPRIMVOLTRMS'],
     register: 'IN_99',
     convertToDisplay: (value) => value,
-    convertToValue: (value) => parseInt(value),
+    convertToValue: (value) => parseInt(value), 
     placeholderKey: 'testprimvoltrms_placeholder',
     labelKey: 'testprimvoltrms_label',
     style: {
@@ -2254,6 +2402,7 @@ export const modbusRegisterMatrix = {
     register: 'IN_100',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'testauxinp1_placeholder',
     labelKey: 'testauxinp1_label',
     style: {
@@ -2269,6 +2418,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1043',
     convertToDisplay: (value) => value,
     convertToValue: (value) => parseInt(value),
+    unit: 'mA',
     placeholderKey: 'testauxinp1_placeholder',
     labelKey: 'actmode_curr_limit_label',
     style: {
@@ -2278,7 +2428,231 @@ export const modbusRegisterMatrix = {
       minWidth: '150px',
       boxSizing: 'border-box'
     }
-  }
+  },
+  ActModeCR: {
+    registerPath: ['ActModeCR'],
+    register: 'HO_1044',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'act_mode_cr_placeholder',
+    labelKey: 'act_mode_cr_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ActModeRappFactor: {
+    registerPath: ['ActModeRappFactor'],
+    register: 'HO_1045',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'act_mode_rapp_factor_placeholder',
+    labelKey: 'act_mode_rapp_factor_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ActModeSpm: {
+    registerPath: ['ActModeSpm'],
+    register: 'HO_1046',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'act_mode_spm_placeholder',
+    labelKey: 'act_mode_spm_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  IdleCurr: {
+    registerPath: ['IdleCurr'],
+    register: 'HO_1047',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'idle_curr_placeholder',
+    labelKey: 'idle_curr_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  IgnAngle: {
+    registerPath: ['IgnAngle'],
+    register: 'HO_1088',
+    convertToDisplay: (value) => (value / 10).toFixed(1),
+    convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
+    placeholderKey: 'ign_angle_placeholder',
+    labelKey: 'ign_angle_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ActModeStep: {
+    registerPath: ['ActModeStep'],
+    register: 'HO_1048',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'act_mode_step_placeholder',
+    labelKey: 'act_mode_step_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ActModeSparkQuench: {
+    registerPath: ['ActModeSparkQuench'],
+    register: 'HO_1049',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'act_mode_spark_quench_placeholder',
+    labelKey: 'act_mode_spark_quench_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  Resistivity: {
+    registerPath: ['Resistivity'],
+    register: 'HO_1050',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'resistivity_placeholder',
+    labelKey: 'resistivity_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  RiseSlopeA: {
+    registerPath: ['RiseSlopeA'],
+    register: 'HO_1051',
+    convertToDisplay: (value) => (value / 10).toFixed(1),
+    convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
+    placeholderKey: 'rise_slope_a_placeholder',
+    labelKey: 'rise_slope_a_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  RiseSlopeC: {
+    registerPath: ['RiseSlopeC'],
+    register: 'HO_1052',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'rise_slope_c_placeholder',
+    labelKey: 'rise_slope_c_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  RiseTimeA: {
+    registerPath: ['RiseTimeA'],
+    register: 'HO_1053',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'rise_time_a_placeholder',
+    labelKey: 'rise_time_a_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ArcdetLev: {
+    registerPath: ['ArcdetLev'],
+    register: 'HO_1056',
+    convertToDisplay: (value) => (value / 10).toFixed(1),
+    convertToValue: (value) => Math.round(parseFloat(value) * 10),
+    unit: 'mA',
+    placeholderKey: 'arcdet_lev_placeholder',
+    labelKey: 'arcdet_lev_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  ArcQuench: {
+    registerPath: ['ArcQuench'],
+    register: 'HO_1057',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: 'mA',
+    placeholderKey: 'arc_quench_placeholder',
+    labelKey: 'arc_quench_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+  DustResitivity: {
+    registerPath: ['DustResitivity'],
+    register: 'HO_1050',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: '',
+    placeholderKey: 'dust_resistivity_placeholder',
+    labelKey: 'dust_resistivity_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
 };
       
 export function getRegisterInfo(registerPath) {
