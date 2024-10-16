@@ -4,6 +4,7 @@ import { ConfigProvider } from './contexts/ConfigContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import WebSocketProvider from './contexts/WebSocketProvider';
 import ControllersDataProvider from './contexts/ControllersDataProvider';
+import DbControllersDataProvider from './contexts/DbControlerDataProvider';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Epic4Manual from './pages/Epic4Manual';
@@ -64,6 +65,7 @@ const App = () => {
         <Router>
           <ErrorBoundary>
             <WebSocketProvider>
+              <DbControllersDataProvider>
               <ControllersDataProvider>
                 <SerialAnalogDataProvider>
                   <SerialDigitalDataProvider>
@@ -82,8 +84,9 @@ const App = () => {
                     </Routes>
                     <ToastContainer />
                   </SerialDigitalDataProvider>
-                </SerialAnalogDataProvider>
+                </SerialAnalogDataProvider>            
               </ControllersDataProvider>
+              </DbControllersDataProvider>
             </WebSocketProvider>
           </ErrorBoundary>
         </Router>

@@ -79,12 +79,51 @@ const ControllersDataProvider = ({ children }) => {
       return null;
     };
 
+    const getControllerText = (ip, registerPath) => {
+      console.log('getControllerText called with:', { ip, registerPath });
+      
+      if (!data || !Array.isArray(data)) {
+        console.log('Data is invalid:', data);
+        return '';
+      }
+    
+      const filteredData = ip
+        ? data.filter((item) => item.Controller && item.Controller.ip === ip)
+        : data;
+      
+      console.log('Filtered data:', filteredData);
+    
+      if (filteredData.length > 0) {
+        const controller = filteredData[0].Controller;
+        console.log('Controller:', controller);
+        
+        if (controller && controller.fields) {
+          const result = registerPath.map(path => {
+            const value = controller.fields[path];
+            console.log(`Value for ${path}:`, value);
+            // Convert ASCII code to character, if it's a number and within valid ASCII range
+            // Ignore ASCII 0 (null character)
+            if (typeof value === 'number' && value > 0 && value <= 255) {
+              return String.fromCharCode(value);
+            }
+            return value !== undefined && value !== 0 ? String(value) : '';
+          }).join('');
+          
+          console.log('Final result:', result);
+          return result.trim(); // Trim any leading/trailing whitespace
+        }
+      }
+      
+      console.log('No matching controller found');
+      return '';
+    };
     return {
       data,
       loading,
       error,
       refresh: fetchData,
       getControllerField,
+      getControllerText,
     };
   }, [data, loading, error, fetchData]);
 

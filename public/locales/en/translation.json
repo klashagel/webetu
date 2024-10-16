@@ -13,7 +13,7 @@
   "ao1_placeholder": "Enter AO1 value",
   "ao2_label": "AO2",
   "ao2_placeholder": "Enter AO2 value",
-  "act_mode_firing_ratio_label": "Firing Ratio (%)",
+  "act_mode_firing_ratio_label": "Firing Ratio",
   "act_mode_firing_ratio_placeholder": "Enter firing ratio (0-100)",
   "manual": "Manual",
   "auto": "Auto",
@@ -64,5 +64,11 @@
   "arc_quench_placeholder": "Enter arc quench value",
 
 "dust_resistivity_placeholder" : "Enter dust resistivity",
-"dust_resistivity_label" : "Dust resitivity"
+"dust_resistivity_label" : "Dust resitivity",
+
+"node_address_placeholder" : "Enter node address",
+"node_address_label" : "Node address",
+
+"fieldposition_placeholder" : "Enter field position",
+"fieldposition_label" : "Field position"
 }

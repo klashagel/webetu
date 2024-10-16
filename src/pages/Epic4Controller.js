@@ -83,8 +83,8 @@ const Epic4Controller = () => {
 
          <LabeledPaper label="Controller Settings" className="max-w-2xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <ModbusNumberInput registerPath={['AO1']} ip={ip} />
-            <ModbusNumberInput registerPath={['AO2']} ip={ip} width='w-36' />
+            <ModbusNumberInput registerPath={['AO1']} ip={ip} width='w-20' />
+            <ModbusNumberInput registerPath={['AO2']} ip={ip} width='w-20' />
             <ModbusNumberInput registerPath={['ActModeFiringRatio']} ip={ip} width='w-36' />      
             <ModbusNumberInput registerPath={['ActModeVoltPeak']} ip={ip} width='w-36'/>
             <ModbusNumberInput registerPath={['ActModeFiringRatio']} ip={ip} width='w-36'/>
@@ -100,7 +100,7 @@ const Epic4Controller = () => {
           <ModbusNumberInput registerPath={['ActModeSpm']} ip={ip} width='w-52'/>
         </div>
         <div className={`mb-5 ${borderColor}`}>
-          <ModbusNumberInput registerPath={['IdleCurr']} ip={ip} width='w-40'/>
+          <ModbusNumberInput registerPath={['IdleCurr']} ip={ip} width='w-20'/>
         </div>
         <div className={`mb-5 ${borderColor}`}>
           <ModbusNumberInput registerPath={['ActModeRappFactor']} ip={ip} width='w-40'/>
@@ -130,27 +130,8 @@ const Epic4Controller = () => {
         registerPath={['SecPulseCurr']} 
         ip={ip} 
         min={0} 
-        max={100} 
-        label="Pulse current"
-        width={160}
-        height={150}
-        ranges={[
-          { lightColor: "bg-blue-100", darkColor: "bg-blue-900", value: 20 },
-          { lightColor: "bg-blue-300", darkColor: "bg-blue-700", value: 40 },
-          { lightColor: "bg-blue-500", darkColor: "bg-blue-600", value: 60 },
-          { lightColor: "bg-blue-600", darkColor: "bg-blue-500", value: 80 },
-          { lightColor: "bg-blue-700", darkColor: "bg-blue-300", value: 100 }
-        ]}
-      />
-    </div>
-
-    <div className="mt-4">
-      <ModbusGauge 
-        registerPath={['SecVoltAvg']} 
-        ip={ip} 
-        min={0} 
         max={1000} 
-        label="Sec volt"
+        label="Pulse current"
         width={160}
         height={150}
         ranges={[
@@ -164,11 +145,30 @@ const Epic4Controller = () => {
     </div>
 
     <div className="mt-4">
+      <ModbusGauge 
+        registerPath={['SecVoltAvg']} 
+        ip={ip} 
+        min={0} 
+        max={100} 
+        label="Sec volt"
+        width={160}
+        height={150}
+        ranges={[
+          { lightColor: "bg-blue-100", darkColor: "bg-blue-900", value: 20 },
+          { lightColor: "bg-blue-300", darkColor: "bg-blue-700", value: 40 },
+          { lightColor: "bg-blue-500", darkColor: "bg-blue-600", value: 60 },
+          { lightColor: "bg-red-600", darkColor: "bg-blue-500", value: 80 },
+          { lightColor: "bg-red-700", darkColor: "bg-blue-300", value: 100 }
+        ]}
+      />
+    </div>
+
+    <div className="mt-4">
       <ModbusGaugeGoogle
         registerPath={['SecPulseCurr']} 
         ip={ip} 
         min={0} 
-        max={100} 
+        max={1000} 
         label="Pulse current"
         width={70}
         height={70}

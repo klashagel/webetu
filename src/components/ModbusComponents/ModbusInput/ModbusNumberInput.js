@@ -125,32 +125,60 @@ const ModbusNumberInput = ({ registerPath, ip, width = 'w-full' }) => {
       setEditing(false);
     }
   };
-
   const theme = createTheme({
     palette: {
       mode: isDarkMode ? 'dark' : 'light',
     },
   });
 
+ 
+
+  const unit = registerInfo?.unit || '';
+ 
   const labelClasses = `
-    absolute -top-3 left-3 text-sm px-1  tracking-wide
+    absolute top-0 left-0 text-xs tracking-wide
     pointer-events-none z-10 transition-all duration-200 
-    transform translate-y-1 scale-75 origin-top-left
+    transform -translate-y-1/2 scale-75 origin-left
+    truncate max-w-full
     ${isDarkMode ? 'bg-gray-700 text-white/70' : 'bg-white text-black/60'}
   `;
 
-  const unit = registerInfo?.unit || ''; // Get the unit from registerInfo
-
   const spanClasses = `
-    h-10 flex items-center rounded 
-    px-3.5 cursor-text text-base bg-transparent
-    ${width}
+    h-8 flex items-center rounded 
+    pl-0 pr-2 cursor-text text-sm bg-transparent
+    truncate
     ${isDarkMode ? 'text-white' : 'text-black/87'}
   `;
 
+  const getWidthInPixels = (widthClass) => {
+    const numericWidth = widthClass.match(/\d+/);
+    return numericWidth ? `${numericWidth[0] * 4}px` : '100%';
+  };
+
+  const inputStyle = {
+    width: '100%',
+    padding: 4,
+    margin: 0,
+    height: '20px',
+    
+  };
+
+  const containerStyle = {
+    ...registerInfo?.style,
+    width: getWidthInPixels(width),
+    padding: 0,
+    margin: 0,
+  };
+
+
+
+  const widthStyle = {
+    width: getWidthInPixels(width),
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <div className={`relative mt-4 mb-2 ${width}`} style={registerInfo?.style} ref={containerRef}>
+      <div className="relative p-0" ref={containerRef}>
         {editing ? (
           <TextField
             value={inputValue}
@@ -165,22 +193,30 @@ const ModbusNumberInput = ({ registerPath, ip, width = 'w-full' }) => {
             autoFocus
             inputRef={inputRef}
             label={`${t(registerInfo?.labelKey || 'Value')} `}
-            fullWidth
             InputLabelProps={{
               className: labelClasses
             }}
+            inputProps={{
+              style: inputStyle,
+            }}
             InputProps={{
-              className: `bg-transparent ${width}`
+              className: 'bg-transparent pl-0',
+              style: { paddingLeft: 0 }
+            }}
+            style={{
+              ...widthStyle,
+              margin: 0,
             }}
           />
         ) : (
-          <div className={`relative ${width}`}>
-            <span className={labelClasses}>
+          <div className="relative p-0" style={widthStyle}>
+            <span className={labelClasses} title={`${t(registerInfo?.labelKey || 'Value')} `}>
               {`${t(registerInfo?.labelKey || 'Value')} `}
             </span>
             <span
               onClick={handleLabelClick}
-              className={spanClasses}
+              className={`${spanClasses} w-full`}
+              title={`${inputValue}${unit ? ` ${unit}` : ''}`}
             >
               {inputValue !== '' && inputValue !== null && inputValue !== undefined 
                 ? `${inputValue}${unit ? ` ${unit}` : ''}` 

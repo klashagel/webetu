@@ -71,9 +71,9 @@ const ModbusGaugeGoogle = ({ registerPath, ip, min = 0, max = 100, label, width 
         data={data}
         options={options}
       />
-      <div className={`mt-2 font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
+{/*       <div className={`mt-2 font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
         {label}: {formatTextValue(displayValue)}
-      </div>
+      </div> */}
     </div>
   );
 };

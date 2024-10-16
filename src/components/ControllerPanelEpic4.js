@@ -5,13 +5,14 @@ import { useTheme } from '../contexts/ThemeContext';
 import ModbusGauge from './ModbusComponents/ModbusGauge/ModbusGauge';
 import ModbusNumberInput from '../components/ModbusComponents/ModbusInput/ModbusNumberInput';
 import TextField from '@mui/material/TextField';
-
+import ModbusTextInput from './ModbusComponents/ModbusInput/ModbusTextInput';
+import ModbusGaugeGoogle from './ModbusComponents/ModbusGauge/ModbusGaugeGoogle';
 
 const ControllerPanelEpic4 = ({ item, onSelect, onDoubleClick, selected }) => {
-  const shouldBlink = item.Controller && item.Controller.fields.SumAlarm === 1;
+  ///const shouldBlink = item.Controller && item.Controller.fields.SumAlarm === 1;
   const { isDarkMode } = useTheme();
-
   
+
   const bgColor = isDarkMode ? 'bg-gray-800' : 'bg-gray-100';
   const textColor = isDarkMode ? 'text-white' : 'text-gray-900';
   const borderColor = isDarkMode ? 'border-gray-700' : 'border-gray-300';
@@ -21,47 +22,68 @@ const ControllerPanelEpic4 = ({ item, onSelect, onDoubleClick, selected }) => {
     return str.split('').filter(char => char.charCodeAt(0) !== 0).join('').trim();
   };
 
-  const inputConfigs = [
-    { registerPath: ['ActModeFiringRatio'], width: 'w-32' },
-    { registerPath: ['FIELDPOSITION'], width: 'w-32' },
-
-    // Add more configurations as needed
-  ];
+  
 
   return (
     <div
       onClick={onSelect}
       onDoubleClick={() => onDoubleClick(item.ip)}
-      style={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '10px',
-        color: isDarkMode ? '#ecf0f1' : '#333',
-      }}
+      className={`h-full w-full flex flex-col ${bgColor} ${textColor} ${borderColor} overflow-hidden`}
     >
-      <div style={{ flexGrow: 1, overflow: 'auto' }}>
-  
-        <p className="paragraph">IP: {sanitizeString(item.Controller.name)}</p>
-        {item.Controller && (
-          <p className="paragraph">Name: {sanitizeString(item.name)}</p>
-        )}
-        <p className="paragraph">Last Active: {item.lastActive}</p>
-      </div>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-      {inputConfigs.map((config, index) => (
-        <ModbusNumberInput
-          key={index}
-          registerPath={config.registerPath}
-          ip={item.ip}
-          width={config.width}
-          label={config.label}
-        />
-      ))}
-    </div>
+      <div className="grid grid-cols-3 gap-1 pl-1 pt-2">
 
-   
+      <div className="col-span-3">
+    <ModbusTextInput
+      registerPath={['Name']}
+      ip={item.ip}
+      width="w-44"
+    />
+  </div>
+
+  <ModbusNumberInput
+          registerPath={['FIELDPOSITION']}
+          ip={item.ip}
+         
+           width="w-full"
+        />
+
+        <ModbusNumberInput
+          registerPath={['NodeAddress']}
+          ip={item.ip}
+          width="w-full"
+        />
+        <ModbusNumberInput
+          registerPath={['ActModeFiringRatio']}
+          ip={item.ip}
+          width="w-full"
+        />
+
+<ModbusNumberInput
+          registerPath={['FIELDPOSITION']}
+          ip={item.ip}
+         
+           width="w-full"
+        />
+        <ModbusNumberInput
+          registerPath={['NodeAddress']}
+          ip={item.ip}
+          width="w-full"
+        />
+
+<div className="col-span-3">
+      <ModbusGaugeGoogle
+        registerPath={['SecPulseCurr']} 
+        ip={item.ip} 
+        min={0} 
+        max={1000} 
+        label="Pulse current"
+        width={70}
+        height={70}
+      />
+   </div>
+        
+      </div>
+ 
     </div>
   );
 };

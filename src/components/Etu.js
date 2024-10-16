@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { ControllersDataContext } from '../contexts/ControllersDataProvider';
+import { DbControllersDataContext } from '../contexts/DbControlerDataProvider';
 import { useNavigate } from 'react-router-dom';
 import ControllerPanelEpic4 from './ControllerPanelEpic4';
 import ControllerPanelUnknown from './ControllerPanelUnknown';
@@ -7,6 +8,8 @@ import DraggableController from './DraggableController';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useTheme } from '../contexts/ThemeContext';
+import AddControllerDialog from '../dialogs/AddControllerDialog';
+import NestedMenuItem from './NestedMenuItem';
 
 const Etu = () => {
   const { data, error } = useContext(ControllersDataContext);
@@ -20,6 +23,18 @@ const Etu = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showUnknown, setShowUnknown] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const [addDialogOpen, setAddDialogOpen] = useState(false);
+
+  const handleAddController = (newController) => {
+    // Implement the logic to add the new controller
+    console.log('Adding new controller:', newController);
+    // You might want to update your state or make an API call here
+    // For example:
+    // setControllerData(prevData => [...prevData, newController]);
+    // or
+    // fetchData(); // to refresh the data from the server
+  };
 
   const extractData = useCallback((controllers) => {
     if (!Array.isArray(controllers)) {
@@ -148,41 +163,44 @@ const Etu = () => {
     handleMenuClose();
   };
 
-  const renderControllerPanel = (ip, index) => {
-    const item = controllerData.find(data => data.ip === ip);
-    if (!item) return null;
-    if (!showUnknown && item.ctrlType === 'UNKNOWN') return null;
+ // ... (previous code remains the same)
 
-    const Panel = item.ctrlType === 'UNKNOWN' ? ControllerPanelUnknown : ControllerPanelEpic4;
-    const size = panelSizes[item.ip] || { width: 300, height: 200 };
+const renderControllerPanel = (ip, index) => {
+  const item = controllerData.find(data => data.ip === ip);
+  if (!item) return null;
+  if (!showUnknown && item.ctrlType === 'UNKNOWN') return null;
 
-    return (
-      <div
-        key={item.ip}
-        className="p-2"
-        onDragOver={(e) => {
-          e.preventDefault();
-          if (isEditMode) handleDragOver(index);
-        }}
-        onDrop={() => {
-          if (isEditMode) handleDrop(index);
-        }}
+  const Panel = item.ctrlType === 'UNKNOWN' ? ControllerPanelUnknown : ControllerPanelEpic4;
+  const size = panelSizes[item.ip] || { width: 300, height: 200 };
+
+  return (
+    <div
+      key={item.ip}
+      className="m-1"
+      onDragOver={(e) => {
+        e.preventDefault();
+        if (isEditMode) handleDragOver(index);
+      }}
+      onDrop={() => {
+        if (isEditMode) handleDrop(index);
+      }}
+    >
+      <DraggableController
+        initialSize={size}
+        onResize={(newSize) => handleResize(item.ip, newSize)}
+        selected={item.selected}
+        onDragStart={() => handleDragStart(index)}
+        onDragEnd={handleDragEnd}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        index={index}
+        isResizeEnabled={isEditMode}
+        isDragDropEnabled={isEditMode}
+        isEditMode={isEditMode}
+        title={`Controller ${item.ip}`}
+        isDarkMode={isDarkMode}
       >
-        <DraggableController
-          initialSize={size}
-          onResize={(newSize) => handleResize(item.ip, newSize)}
-          selected={item.selected}
-          onDragStart={() => handleDragStart(index)}
-          onDragEnd={handleDragEnd}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          index={index}
-          isResizeEnabled={isEditMode}
-          isDragDropEnabled={isEditMode}
-          isEditMode={isEditMode}
-          title={`Controller ${item.ip}`}
-          isDarkMode={isDarkMode}
-        >
+        <div className="w-full h-full p-0"> {/* Add this wrapper */}
           <Panel
             item={item}
             onSelect={() => handleSelect(controllerData.findIndex(data => data.ip === item.ip))}
@@ -190,10 +208,12 @@ const Etu = () => {
             selected={item.selected}
             isDarkMode={isDarkMode}
           />
-        </DraggableController>
-      </div>
-    );
-  };
+        </div>
+      </DraggableController>
+    </div>
+  );
+};
+
 
   if (error) {
     return <p className={`text-red-500 p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>Error: {error.message}</p>;
@@ -213,36 +233,55 @@ const Etu = () => {
             <MoreVertIcon />
           </IconButton>
           <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-            PaperProps={{
-              style: {
-                backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
-                color: isDarkMode ? '#ffffff' : '#000000',
-                boxShadow: isDarkMode ? '0 2px 8px rgba(255, 255, 255, 0.15)' : '0 2px 8px rgba(0, 0, 0, 0.15)',
-              },
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        PaperProps={{
+          style: {
+            backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
+            color: isDarkMode ? '#ffffff' : '#000000',
+            boxShadow: isDarkMode ? '0 2px 8px rgba(255, 255, 255, 0.15)' : '0 2px 8px rgba(0, 0, 0, 0.15)',
+          },
+        }}
+      >
+        <NestedMenuItem
+          label="Controller Options"
+          parentMenuOpen={Boolean(anchorEl)}
+        >
+          <MenuItem 
+            onClick={() => {
+              setAddDialogOpen(true);
+              handleMenuClose();
             }}
           >
-            <MenuItem 
-              onClick={toggleEditMode}
-              style={{
-                backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
-                color: isDarkMode ? '#ffffff' : '#000000',
-              }}
-            >
-              {isEditMode ? 'Lock Layout' : 'Edit Layout'}
-            </MenuItem>
-            <MenuItem 
-              onClick={toggleShowUnknown}
-              style={{
-                backgroundColor: isDarkMode ? '#2d3748' : '#ffffff',
-                color: isDarkMode ? '#ffffff' : '#000000',
-              }}
-            >
-              {showUnknown ? 'Hide Unknown Controllers' : 'Show Unknown Controllers'}
-            </MenuItem>
-          </Menu>
+            Add Controller
+          </MenuItem>
+          <MenuItem onClick={toggleShowUnknown}>
+            {showUnknown ? 'Hide Unknown Controllers' : 'Show Unknown Controllers'}
+          </MenuItem>
+        </NestedMenuItem>
+        <NestedMenuItem
+          label="Layout Options"
+          parentMenuOpen={Boolean(anchorEl)}
+        >
+          <MenuItem onClick={toggleEditMode}>
+            {isEditMode ? 'Lock Layout' : 'Edit Layout'}
+          </MenuItem>
+          {/* Add more layout-related options here */}
+        </NestedMenuItem>
+        {/* Add more top-level menu items or nested menus as needed */}
+      </Menu>
+          <AddControllerDialog
+        open={addDialogOpen}
+        onClose={() => {
+          console.log('Closing Add Controller Dialog'); // Add this log
+          setAddDialogOpen(false);
+        }}
+        onAdd={handleAddController}
+      />         
+
+
+
         </div>
       </div>
     </div>

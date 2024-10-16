@@ -2307,7 +2307,7 @@ export const modbusRegisterMatrix = {
     register: 'HO_1112',
     convertToDisplay: (value) => String.fromCharCode(value),
     convertToValue: (value) => value.charCodeAt(0),
-    unit: 'mA',
+    unit: '',
     placeholderKey: 'fieldposition_placeholder',
     labelKey: 'fieldposition_label',
     style: {
@@ -2653,7 +2653,43 @@ export const modbusRegisterMatrix = {
       boxSizing: 'border-box'
     }
   },
+
+  NodeAddress: {
+    registerPath: ['NodeAddress'],
+    register: 'HO_1111',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => parseInt(value),
+    unit: '',
+    placeholderKey: 'node_address_placeholder',
+    labelKey: 'node_address_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
+
+  Name: {
+    registerPath: ['NAME1', 'NAME2', 'NAME3', 'NAME4', 'NAME5', 'NAME6', 'NAME7', 'NAME8', 'NAME9', 'NAME10', 'NAME11', 'NAME12' ],
+    register: 'HO_1112',
+    convertToDisplay: (value) => value,
+    convertToValue: (value) => value,
+    unit: '',
+    placeholderKey: 'name_placeholder',
+    labelKey: 'name_label',
+    style: {
+      height: '30px',
+      lineHeight: '30px',
+      padding: '5px 10px',
+      minWidth: '150px',
+      boxSizing: 'border-box'
+    }
+  },
 };
+
+
       
 export function getRegisterInfo(registerPath) {
     console.log('getRegisterInfo called with:', registerPath);
